@@ -2,5 +2,16 @@ Django==1.7.1
 Jinja2==2.7.3
 MarkupSafe==0.23
 Pillow==2.6.1
+PyYAML==3.11
 Pygments==1.6
+argh==0.26.1
 bpython==0.13.1
+clint==0.3.1
+coverage==3.7
+django-activeurl==0.1.8
+django-wysiwyg-redactor==0.4.2.1
+expects==0.5.0
+mamba==0.8.2
+pathtools==0.1.2
+shortuuid==0.4.2
+watchdog==0.8.1
