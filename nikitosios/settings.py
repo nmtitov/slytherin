@@ -104,3 +104,5 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 REDACTOR_OPTIONS = {'lang': 'en'}
 REDACTOR_UPLOAD = 'media/redactor'
+
+STATIC_ROOT = "/var/www/nikitosios/static/"
