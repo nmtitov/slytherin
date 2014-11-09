@@ -4,38 +4,16 @@
 
     <section id="sectionBlog">
         <div class="wrapper">
-            <!--<header><h1>Apps</h1>-->
-            <!--<ul class="intro">-->
-            <!--<li><a href="#">Posts</a></li>-->
-            <!--<li><a href="#">Screencasts</a></li>-->
-            <!--</ul>-->
-            <!--</header>-->
+            <header>
+                <ul class="intro">
+                    <li><a href="{% url 'index' %}">Projects</a></li>
+                </ul>
+                <h1>{{ project.project_title }}</h1>
+            </header>
             <div class="section-content">
-                <ul id="listPosts" class="blocks">
+                {{ project.process_description|safe }}
+{#                <ul id="listPosts" class="blocks">#}
 
-                    {% for project in projects %}
-
-                        <li>
-                            <article>
-                                <figure>
-                                    {% if project.preview_url %}
-                                    <div class="img-wrapper"><img src="{{ project.preview_url }}" alt=""></div>
-                                    {% endif %}
-                                    <figcaption><h1><a href="{%  url 'detail' project_slug=project.slug %}">{{ project.project_title }}</a></h1>
-                                    </figcaption>
-                                </figure>
-                                <!--<img class="center" src="img/meow.png" />-->
-                                <!--<h1><a href="#">Puzzle Cats 1.2</a></h1>-->
-
-                                <!--<p>Тихо и незаметно вышло обновление 1.2, в котором я вернул цену 0.99$ за игру, а все-->
-                                <!--уровни стали бесплатными.</p>-->
-                                <!--<footer>-->
-                                <!--<time datetime="Thu Jul 18 2013 00:00:00 GMT+0200 (EET)">Thursday, July 18, 2013</time>-->
-                                <!--on <a href="#" class="category games">games</a></footer>-->
-                            </article>
-                        </li>
-
-                    {% endfor %}
 
                     {#                        <div class="col-sm-4 project">#}
                     {#                            <h1><a href="#{{ project.slug }}" name="{{ project.title }}">{{ project.title }}</a></h1>#}
@@ -60,7 +38,7 @@
                     {#                               target="itunes_store">Загрузить сейчас</a>#}
                     {#                        </div>#}
 
-                </ul>
+{#                </ul>#}
             </div>
         </div>
     </section>
