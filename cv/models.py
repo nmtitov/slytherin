@@ -8,31 +8,37 @@ def get_image_path(screenshot, filename):
     return os.path.join("screenshots", slugify(screenshot.project.title), filename)
 
 
-class Project(models.Model):
+class CommonInfo(models.Model):
     published = models.BooleanField(default=False, db_index=True)
-    preview = models.OneToOneField('Screenshot', related_name='preview', blank=True, null=True, unique=False)
-    project_title = models.CharField(max_length=1024)
+    pub_date = models.DateTimeField('date published', blank=True, null=True)
     title = models.CharField(max_length=1024)
     slug = models.CharField(max_length=1024, db_index=True, null=False, unique=True)
-    lead = models.TextField(blank=True)
-    body = RedactorField(verbose_name="Body")
-    download_url = models.CharField(max_length=1024, blank=True)
-    store_button = models.TextField(blank=True)
-    pub_date = models.DateTimeField('date published')
-    process_title = models.CharField(max_length=1024)
-    process_description = RedactorField(verbose_name="Process description")
+    lead = models.TextField(blank=True, null=True)
+    body = RedactorField(verbose_name="Body", blank=True, null=True)
+
+    def auto_slug(self):
+        return slugify(self.title)
 
     def save(self, *args, **kwargs):
         if not self.id:
             if not self.slug:
                 self.slug = self.auto_slug()
-        super(Project, self).save(*args, **kwargs)
-
-    def auto_slug(self):
-        return slugify(self.title)
+        super(CommonInfo, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.project_title
+        return self.title
+
+    class Meta:
+        abstract = True
+
+
+class Project(CommonInfo):
+    preview = models.OneToOneField('Screenshot', related_name='preview', blank=True, null=True, unique=False)
+    project_title = models.CharField(max_length=1024)
+    download_url = models.CharField(max_length=1024, blank=True)
+    store_button = models.TextField(blank=True)
+    process_title = models.CharField(max_length=1024)
+    process_description = RedactorField(verbose_name="Process description")
 
     def preview_url(self):
         try:
@@ -49,3 +55,9 @@ class Screenshot(models.Model):
         return self.image_path.url
 
 
+class Post(CommonInfo):
+    pass
+
+
+class Screencast(CommonInfo):
+    pass

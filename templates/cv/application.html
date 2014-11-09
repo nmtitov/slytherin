@@ -1,210 +1,74 @@
 {% load staticfiles %}
+{% load string_extras %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Get the App You Want</title>
-    <link href="{% static 'assets/css/reset.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
+{% with fp=request.get_full_path %}
+
+    {% url 'projects' as pr_path %}
+    {% url 'posts' as ps_path %}
+    {% url 'screencasts' as sc_path %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Get the App You Want</title>
+        <link href="{% static 'assets/css/reset.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
     <script src="{% static 'assets/js/html5shiv.js' %}"></script>
     <![endif]-->
-</head>
-<body>
-<header id="header" role="banner">
-    <div class="wrapper"><h1><a href="/" class="logo">nikitos iOS</a></h1>
+    </head>
+    <body>
+    <header id="header" role="banner">
+        <div class="wrapper">
+            <h1>
+                <a {% if pr_path|equals:fp %} class="active" {% endif %}
+                                              href="{{ pr_path }}">nikitos iOS</a>
 
-        <p>&nbsp;</p>
-    </div>
-</header>
-<nav id="nav" role="navigation">
-    <div class="wrapper">
-        <ul id="linksSite">
-            <!--<li><a href="/">Home</a></li>-->
-            <li>we make apps, you make money<!-- Kappa --></li>
-            <!--<li><a href="/apps">Apps</a></li>-->
-            <!--<li><a href="/posts">Blog</a></li>-->
-        </ul>
-        <!--<ul id="linksPromo">-->
-        <!--<li><a href="https://twitter.com/">Wanna tweet?</a></li>-->
-        <!--</ul>-->
-    </div>
-</nav>
-<main id="main" role="main">
-    <!--<section id="sectionApps">-->
-    <!--<div class="wrapper">-->
-    <!--<header><h1>Apps</h1>-->
+                <p>we build, you own</p>
+            </h1>
+        </div>
+    </header>
+    <nav id="nav" role="navigation">
+        <div class="wrapper">
+            <ul id="linksSite">
+                <li><a {% if pr_path|equals:fp or "/projects"|starts:fp %} class="active" {% endif %} href="{{ pr_path }}">Projects</a></li>
+                <li><a {% if ps_path|starts:fp %} class="active" {% endif %} href="{{ ps_path }}">Posts</a>
+                </li>
+                <li><a {% if sc_path|starts:fp %} class="active" {% endif %} href="{{ sc_path }}">Screencasts</a>
+                </li>
+            </ul>
+            <ul id="linksPromo">
 
-    <!--<p class="intro">Lots of them!</p></header>-->
-    <!--<div class="section-content">-->
-    <!--<ul id="listApps">-->
-    <!--<li>-->
-    <!--<article><h1><a href="#">Safe To Unplug</a></h1>-->
+            </ul>
+            {#        <ul id="linksSite">#}
+            {#            <!--<li><a href="/">Home</a></li>-->#}
+            {#            <li></li>#}
+            {#            <!--<li><a href="/apps">Apps</a></li>-->#}
+            {#            <!--<li><a href="/posts">Blog</a></li>-->#}
+            {#        </ul>#}
+            <!--<ul id="linksPromo">-->
+            <!--<li><a href="https://twitter.com/">Wanna tweet?</a></li>-->
+            <!--</ul>-->
+        </div>
+    </nav>
+    <main id="main" role="main">
+        {% block content %}{% endblock %}
+    </main>
+    <footer id="footer" role="contentinfo">
+        <div class="wrapper">
+            <p>&copy; 2014 Nikita Titov</p>
 
-    <!--&lt;!&ndash;<p>Защитите ваши данные на USB флешке от потери! Safe to Unplug показывает уведомление,&ndash;&gt;
-    -->
-    <!--&lt;!&ndash;когда устройство действительно готово к извлечению!</p></article>&ndash;&gt;-->
-    <!--<div class="text"><p>Safe to<span class="symbols">&nbsp;</span>unplug app guarantees that-->
-    <!--you will receive notification when you unplug USB stick or<span-->
-    <!--class="symbols">&nbsp;</span>SD<span class="symbols">&nbsp;</span>card or<span-->
-    <!--class="symbols">&nbsp;</span>external hard drive actually is<span-->
-    <!--class="symbols">&nbsp;</span>safe to<span class="symbols">&nbsp;</span>unplug.-->
-    <!--Keep your data protected from occasional accident! To<span class="symbols">&nbsp;</span>run-->
-    <!--Safe to<span class="symbols">&nbsp;</span>unplug at<span class="symbols">&nbsp;</span>system-->
-    <!--start add application to<span class="symbols">&nbsp;</span>Login items (System-->
-    <!--Preferences<span class="symbols">&nbsp;</span><span class="symbols">—</span> Users <span-->
-    <!--class="symbols">&amp; Groups&nbsp;</span><span class="symbols">—</span> Login-->
-    <!--Items)</p></div>-->
-    <!--</article>-->
-    <!--</li>-->
-    <!--<li>-->
-    <!--<article><h1><a href="#">Eject Buddy</a></h1>-->
+            <p>
+                Email: <a href="mailto:nikita@nikitosios.com">nikita@nikitosios.com</a>
+            </p>
+        </div>
+    </footer>
+    </body>
+    </html>
 
-    <!--&lt;!&ndash;<p>Извлечение флешек, USB-устройств, SD-карточек, внешних дисков на Mac OS X с помощью&ndash;&gt;-->
-    <!--&lt;!&ndash;программы, живущей в статус-баре и выполненной в духе минимализма.</p></article>&ndash;&gt;-->
-
-    <!--<div class="text"><p>Extremely convenient app! Editor<span class="symbols">’</span>s-->
-    <!--picks:-)</p>-->
-
-    <!--<p>Eject Buddy app allows quickly eject removable media from status bar menu item and-->
-    <!--guarantees that you will receive notification when you USB stick or<span-->
-    <!--class="symbols">&nbsp;</span>SD<span class="symbols">&nbsp;</span>card-->
-    <!--or<span class="symbols">&nbsp;</span>external hard drive actually is<span-->
-    <!--class="symbols">&nbsp;</span>safe to<span class="symbols">&nbsp;</span>unplug.-->
-    <!--</p>-->
-
-    <!--<p>Keep you data protected from occasional accident! Eject buddy shows notification when-->
-    <!--media is<span class="symbols">&nbsp;</span>safe to<span-->
-    <!--class="symbols">&nbsp;</span>unplug.</p>-->
-
-    <!--<p>Application designed to<span class="symbols">&nbsp;</span>be<span class="symbols">&nbsp;</span>minimalistic-->
-    <!--and <span class="nobrs"><nobr>distraction-free</nobr></span>. It<span-->
-    <!--class="symbols">&nbsp;</span>doesn<span class="symbols">’</span>t even have-->
-    <!--quit button because it<span class="symbols">&nbsp;</span>takes too much space! Once-->
-    <!--installed and added to<span class="symbols">&nbsp;</span>Login items, Eject buddy-->
-    <!--would always be<span class="symbols">&nbsp;</span>you companion!-->
-    <!--</p>-->
-    <!--<p>To<span class="symbols">&nbsp;</span>run Eject Buddy at<span-->
-    <!--class="symbols">&nbsp;</span>system start add application to<span-->
-    <!--class="symbols">&nbsp;</span>Login items (System Preferences<span-->
-    <!--class="symbols">&nbsp;</span><span class="symbols">—</span> Users <span-->
-    <!--class="symbols">&amp; Groups&nbsp;</span><span class="symbols">—</span> Login-->
-    <!--Items)</p>-->
-    <!--</div>-->
-    <!--</article>-->
-    <!--</li>-->
-    <!--<li>-->
-    <!--<article><h1><a href="#">Eject To Delete</a></h1>-->
-
-    <!--&lt;!&ndash;<p>Eject to delete предоставляет возможность использовать клавишу выброса диска (Eject key)&ndash;&gt;
-    -->
-    <!--&lt;!&ndash;на ноутбуках Apple MacBook и клавиатурах Apple в качестве привычного "Delete" — клавиши&ndash;&gt;
-    -->
-    <!--&lt;!&ndash;удаления.</p></article>&ndash;&gt;-->
-    <!--<p class="lead">Remove USB keys, SD cards, external drives with simplest possible UI from-->
-    <!--status bar!</p>-->
-
-    <!--<div class="text"><p>Extremely convenient app! Editor<span class="symbols">’</span>s-->
-    <!--picks:-)</p>-->
-
-    <!--<p>Eject Buddy app allows quickly eject removable media from status bar menu item and-->
-    <!--guarantees that you will receive notification when you USB stick or<span-->
-    <!--class="symbols">&nbsp;</span>SD<span class="symbols">&nbsp;</span>card-->
-    <!--or<span class="symbols">&nbsp;</span>external hard drive actually is<span-->
-    <!--class="symbols">&nbsp;</span>safe to<span class="symbols">&nbsp;</span>unplug.-->
-    <!--</p>-->
-
-    <!--<p>Keep you data protected from occasional accident! Eject buddy shows notification when-->
-    <!--media is<span class="symbols">&nbsp;</span>safe to<span-->
-    <!--class="symbols">&nbsp;</span>unplug.</p>-->
-
-    <!--<p>Application designed to<span class="symbols">&nbsp;</span>be<span class="symbols">&nbsp;</span>minimalistic-->
-    <!--and <span class="nobrs"><nobr>distraction-free</nobr></span>. It<span-->
-    <!--class="symbols">&nbsp;</span>doesn<span class="symbols">’</span>t even have-->
-    <!--quit button because it<span class="symbols">&nbsp;</span>takes too much space! Once-->
-    <!--installed and added to<span class="symbols">&nbsp;</span>Login items, Eject buddy-->
-    <!--would always be<span class="symbols">&nbsp;</span>you companion!-->
-    <!--</p>-->
-    <!--<p>To<span class="symbols">&nbsp;</span>run Eject Buddy at<span-->
-    <!--class="symbols">&nbsp;</span>system start add application to<span-->
-    <!--class="symbols">&nbsp;</span>Login items (System Preferences<span-->
-    <!--class="symbols">&nbsp;</span><span class="symbols">—</span> Users <span-->
-    <!--class="symbols">&amp; Groups&nbsp;</span><span class="symbols">—</span> Login-->
-    <!--Items)</p>-->
-    <!--</div>-->
-    <!--</article>-->
-    <!--</li>-->
-    <!--<li>-->
-    <!--<article><h1><a href="#">Puzzle Cats</a></h1>-->
-
-    <!--&lt;!&ndash;<p>Для этой игры нужны IQ &gt; 190:-)</p></article>&ndash;&gt;-->
-    <!--<div class="text">-->
-    <!--<p>Pawzzle proudly presents first attempt in<span class="symbols">&nbsp;</span>making-->
-    <!--puzzle games.</p>-->
-
-    <!--<p>Puzzle Cats is<span class="symbols">&nbsp;</span>new word in<span class="symbols">&nbsp;</span>world-->
-    <!--of<span class="symbols">&nbsp;</span>puzzles. It<span class="symbols">&nbsp;</span>uses-->
-    <!--old school techniques with intelligent game rules. Hard puzzle game not for the-->
-    <!--<span class="nobrs"><nobr>faint-hearted</nobr></span>!-->
-    <!--</p>-->
-    <!--<p>More than 40 levels carefully created by<span class="symbols">&nbsp;</span>experienced-->
-    <!--game designers. Solve levels using new clever and entertaining color swap mechanics.-->
-    <!--The real puzzle is<span class="symbols">&nbsp;</span>that where you can see solution-->
-    <!--before you perform any actions. Lovely crafted pixel art graphics will complete game-->
-    <!--experience.</p>-->
-    <!--</div>-->
-    <!--</article>-->
-    <!--</li>-->
-    <!--<li>-->
-    <!--<article><h1><a href="#">Gymmeek</a></h1>-->
-
-    <!--&lt;!&ndash;<p>Gymmeek — это тщательно спроектированный таймер с первоклассным дизайном, который делает&ndash;&gt;
-    -->
-    <!--&lt;!&ndash;свою работу.</p></article>&ndash;&gt;-->
-    <!--<div class="text"><p>Gymmeek is<span class="symbols">&nbsp;</span>a<span class="symbols">&nbsp;</span>lovely-->
-    <!--designed boxing timer, which simply does its job.</p>-->
-
-    <!--<p>You can set round time, rest time, number of<span class="symbols">&nbsp;</span>rounds-->
-    <!--and you are ready to<span class="symbols">&nbsp;</span>go!</p>-->
-
-    <!--<p>Perfect for home training, boxing, kickboxing, muay thai, karate, fitness-->
-    <!--workouts.</p>-->
-    <!--</div>-->
-    <!--</article>-->
-    <!--</li>-->
-    <!--<li>-->
-    <!--<article><h1><a href="#">Typoshooter</a></h1>-->
-
-    <!--<p>Imagine you are marine somewhere in abandoned distant lands.</p>-->
-
-    <!--<p>You are surrounded by zombies.</p>-->
-
-    <!--<p> But you have tricky type of gun, seems your boss tried to teach you touch typing... on-->
-    <!--iPhone.</p>-->
-
-    <!--<p> So all you need is to type their names.</p>-->
-
-    <!--<p> Quickly!</p>-->
-    <!--</article>-->
-    <!--&lt;!&ndash;<p>Зомби повсюду! Чтобы сделать выстрел, напечатайте имя зомби на клавиатуре! Посмотрим, кто&ndash;&gt;
-    -->
-    <!--&lt;!&ndash;продержится дольше?</p></article>&ndash;&gt;-->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</section>-->
-    {% block content %}{% endblock %}
-</main>
-<footer id="footer" role="contentinfo">
-    <div class="wrapper"><p>&copy; 2014 <a href="/">Nikita Titov</a></p>
-    </div>
-</footer>
-<!-- scripts linkage-->
-</body>
-</html>
+{% endwith %}

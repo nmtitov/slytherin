@@ -1,26 +1,23 @@
 from django.shortcuts import render
-from django.http import HttpResponse, Http404
-from django.template import RequestContext, loader
+from django.http import Http404
 from cv.models import Project
-from django.shortcuts import render
 
 
-def index(request):
-    projects = Project.objects.filter(published=True).order_by('-pub_date')
-    context = {
-        'projects': projects,
-    }
-    return render(request, 'cv/index.html', context)
+def object_list(request, model):
+    xs = model.objects.filter(published=True).order_by('-pub_date')
+    template_name = 'cv/%s_list.html' % model.__name__.lower()
+    return render(request, template_name, {'object_list': xs})
 
 
 def detail(request, project_slug=None):
     try:
-        project = Project.objects.filter(published=True).get(slug=project_slug)
+        x = Project.objects.filter(published=True).get(slug=project_slug)
     except Project.DoesNotExist:
         raise Http404
-    return render(request, 'cv/detail.html', {'project': project})
+    context = dict(project=x)
+    return render(request, 'cv/detail.html', context)
 
 
-def projects(request):
+def plaintext_projects(request):
     xs = Project.objects.filter(published=True).order_by('-pub_date')
     return render(request, 'cv/plaintext_projects.html', dict(projects=xs))

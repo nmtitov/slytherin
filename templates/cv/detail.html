@@ -5,40 +5,10 @@
     <section id="sectionBlog">
         <div class="wrapper">
             <header>
-                <ul class="intro">
-                    <li><a href="{% url 'index' %}">Projects</a></li>
-                </ul>
                 <h1>{{ project.project_title }}</h1>
             </header>
             <div class="section-content">
                 {{ project.process_description|safe }}
-{#                <ul id="listPosts" class="blocks">#}
-
-
-                    {#                        <div class="col-sm-4 project">#}
-                    {#                            <h1><a href="#{{ project.slug }}" name="{{ project.title }}">{{ project.title }}</a></h1>#}
-                    {##}
-                    {#                            <p>#}
-                    {#                                {{ project.store_button|safe }}#}
-                    {#                            </p>#}
-                    {##}
-                    {#                            <p class="lead">{{ project.lead }}</p>#}
-                    {##}
-                    {#                            <ul class="thumbs">#}
-                    {#                                {% for screenshot in project.screenshot_set.all %}#}
-                    {#                                    <li><span class="round"><img src="{{ screenshot.image_path.url }}"></span></li>#}
-                    {#                                {% endfor %}#}
-                    {##}
-                    {#                            </ul>#}
-                    {##}
-                    {#                            <p class="">{{ project.body }}</p>#}
-                    {##}
-                    {#                            <a class="btn btn-large btn-success"#}
-                    {#                               href="{{ project.download_url }}"#}
-                    {#                               target="itunes_store">Загрузить сейчас</a>#}
-                    {#                        </div>#}
-
-{#                </ul>#}
             </div>
         </div>
     </section>

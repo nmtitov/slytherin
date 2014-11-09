@@ -42,13 +42,21 @@ a:hover {
     /*text-decoration none*/
 }
 
+a.active {
+    text-decoration: none;
+}
+
 header {
     font-size: 1.5em;
 }
 
-header > h1 {
+header h1 {
     display: inline-block;
     vertical-align: top;
+}
+
+.logo {
+    color: #246;
 }
 
 footer {
@@ -73,24 +81,29 @@ footer {
 #linksSite,
 #linksPromo {
     display: inline-block;
-    margin: 0 1em 0 0;
+    margin: 0 2em 0 0;
 }
 
 #linksSite li,
 #linksPromo li {
     display: inline-block;
-    margin: 0;
+    margin: 0 0.5em 0 0;
 }
 
 #linksSite a,
 #linksPromo a {
     display: block;
-    padding: 0.3em 0.6em 0.3em 0;
+    padding: 0 0.6em 0 0;
 }
 
 #linksSite {
-    font-weight: 600;
+    /*font-weight: 600;*/
     font-size: 1.5em;
+}
+
+#linksSite .active {
+    font-size: 2em;
+    text-decoration: none;
 }
 
 #main {
@@ -106,7 +119,7 @@ footer {
     color: #999;
     display: inline-block;
     font-weight: 300;
-    margin: 1em;
+    margin: 1em 1em 1em 0;
     vertical-align: top;
 }
 
@@ -124,7 +137,7 @@ footer {
 
 .intro a {
     display: block;
-    padding: 0.2em 0.4em;
+    padding: 0.2em 0.4em 0.2em 0;
 }
 
 #sectionApps {
@@ -209,8 +222,8 @@ img.aspect-fit {
 }
 
 /*.blocks article:hover {*/
-    /*background: #f04;*/
-    /*color: #fff;*/
+/*background: #f04;*/
+/*color: #fff;*/
 /*}*/
 
 .blocks article:hover figcaption h1 a {
@@ -219,8 +232,8 @@ img.aspect-fit {
 }
 
 /*.blocks article:hover a {*/
-    /*background-color: #ff0044;*/
-    /*color: #fff;*/
+/*background-color: #ff0044;*/
+/*color: #fff;*/
 /*}*/
 
 .blocks h1 {
@@ -249,8 +262,8 @@ time {
 }
 
 /*.blocks article:hover time {*/
-    /*color: #fff;*/
-    /*background: rgba(64, 64, 64, 0.05);*/
+/*color: #fff;*/
+/*background: rgba(64, 64, 64, 0.05);*/
 /*}*/
 
 .block a {
@@ -260,8 +273,8 @@ time {
 }
 
 /*.blocks article:hover a {*/
-    /*color: #fff;*/
-    /*background: rgba(64, 64, 64, 0.05);*/
+/*color: #fff;*/
+/*background: rgba(64, 64, 64, 0.05);*/
 /*}*/
 
 .category {
@@ -309,8 +322,15 @@ time {
     .intro {
         margin-left: 0;
     }
+
     .intro > li > a {
         margin-left: 0;
         padding-left: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    #linksSite li {
+        display: block;
     }
 }
