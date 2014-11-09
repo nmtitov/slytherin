@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'redactor',
     'cv',
 )
 
@@ -98,3 +99,6 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 ]
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+REDACTOR_OPTIONS = {'lang': 'en'}
+REDACTOR_UPLOAD = 'media/redactor'

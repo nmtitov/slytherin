@@ -1,0 +1,11 @@
+{% extends "cv/application.html.backup" %}
+
+{% block content %}
+
+
+    {% for project in projects %}
+    <p>
+        {{ project.title }} <a href="{{ project.download_url }}">{{ project.download_url }}</a>
+    </p>
+    {% endfor %}
+{% endblock %}

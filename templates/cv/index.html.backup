@@ -1,4 +1,4 @@
-{% extends "cv/layout.html" %}
+{% extends "cv/application.html" %}
 
 {% block content %}
 

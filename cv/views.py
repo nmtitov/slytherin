@@ -10,5 +10,8 @@ def index(request):
     context = {
         'projects': projects,
     }
-    return render(request, 'cv/projects.html', context)
+    return render(request, 'cv/index.html', context)
 
+def projects(request):
+    xs = Project.objects.order_by('-pub_date')
+    return render(request, 'cv/plaintext_projects.html', dict(projects=xs))
