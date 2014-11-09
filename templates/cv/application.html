@@ -37,10 +37,8 @@
         <div class="wrapper">
             <ul id="linksSite">
                 <li><a {% if pr_path|equals:fp or "/projects"|starts:fp %} class="active" {% endif %} href="{{ pr_path }}">Projects</a></li>
-                <li><a {% if ps_path|starts:fp %} class="active" {% endif %} href="{{ ps_path }}">Posts</a>
-                </li>
-                <li><a {% if sc_path|starts:fp %} class="active" {% endif %} href="{{ sc_path }}">Screencasts</a>
-                </li>
+{#                <li><a {% if ps_path|starts:fp %} class="active" {% endif %} href="{{ ps_path }}">Posts</a></li>#}
+{#                <li><a {% if sc_path|starts:fp %} class="active" {% endif %} href="{{ sc_path }}">Screencasts</a></li>#}
             </ul>
             <ul id="linksPromo">
 
