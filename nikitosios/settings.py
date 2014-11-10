@@ -24,7 +24,12 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    '.nikitosios.com',   # Allow domain and subdomains
+    '.nikitosios.com.',  # Also allow FQDN and subdomains
+]
 
 
 # Application definition
