@@ -61,6 +61,8 @@ header h1 {
 
 footer {
     font-size: 1.2em;
+    background-color: #242628;
+    color: #ffffff;
 }
 
 .wrapper {
