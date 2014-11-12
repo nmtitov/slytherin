@@ -295,26 +295,15 @@ time {
 }
 
 @media (max-width: 1200px) {
-    /*.wrapper {*/
-        /*padding: 2em 1em;*/
-    /*}*/
-
-    /*.blocks {*/
-        /*margin: 1em -1em;*/
-    /*}*/
-
     .blocks li {
         width: 50%;
     }
 }
 
 @media (max-width: 768px) {
-    .wrapper {
-        padding-right: 0;
-    }
-
     .blocks {
-        margin: 0em -2em;
+        margin-left: -2em;
+        margin-right: -2em;
     }
 
     .blocks li {
