@@ -39,6 +39,7 @@ class Project(CommonInfo):
     store_button = models.TextField(blank=True)
     process_title = models.CharField(max_length=1024)
     process_description = RedactorField(verbose_name="Process description")
+    thumbnail_url = models.CharField(max_length=1024)
 
     def preview_url(self):
         try:
