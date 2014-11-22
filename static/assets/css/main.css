@@ -16,14 +16,12 @@
 }
 
 body {
-    background: #f9f9f3;
-    color: #333;
+    background: #fff;
     font: 400 10pt/1.5 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 h1 {
     font-size: 3em;
-    /*font-weight: 700;*/
     letter-spacing: -0.05em;
     line-height: 1;
     margin: 0;
@@ -33,17 +31,24 @@ p {
     margin: 1em 0;
 }
 
-a {
-    color: #246;
-}
-
-a:hover {
-    color: #f04;
-    /*text-decoration none*/
-}
-
 a.active {
     text-decoration: none;
+}
+
+a:visited.underline {
+    border-color: #e0b2e0;
+}
+
+a:link.underline {
+    border-color: #b2ccf0;
+}
+
+a:visited {
+    color: #B40EB4;
+}
+
+a:link {
+    color: #008ACE;
 }
 
 header {
@@ -56,13 +61,13 @@ header h1 {
 }
 
 .logo {
-    color: #246;
+    /*color: #246;*/
 }
 
 footer {
     font-size: 1.2em;
-    background-color: #242628;
-    color: #ffffff;
+    /*background-color: #242628;*/
+    /*color: #ffffff;*/
 }
 
 .wrapper {
@@ -72,12 +77,12 @@ footer {
 }
 
 #nav {
-    background: #f04;
-    color: #fff;
+    /*background: #f04;*/
+    /*color: #fff;*/
 }
 
 #nav a {
-    color: inherit;
+    /*color: inherit;*/
 }
 
 #linksSite,
@@ -101,17 +106,16 @@ footer {
 #linksSite,
 #linksPromo {
     /*font-weight: 600;*/
-    font-size: 1.5em;
+    font-size: 2em;
 }
 
 #linksSite .active {
-    font-size: 2em;
     text-decoration: none;
 }
 
 #main {
-    background: #fff;
-    box-shadow: 0 0.3em 0.9em rgba(0, 0, 0, 0.1);
+    /*background: #fff;*/
+    /*box-shadow: 0 0.3em 0.9em rgba(0, 0, 0, 0.1);*/
 }
 
 #main section {
@@ -119,7 +123,7 @@ footer {
 }
 
 .intro {
-    color: #999;
+    /*color: #999;*/
     display: inline-block;
     font-weight: 300;
     margin: 1em 1em 1em 0;
@@ -144,16 +148,16 @@ footer {
 }
 
 #sectionApps {
-    background: #242628;
-    color: #fff;
+    /*background: #242628;*/
+    /*color: #fff;*/
 }
 
 #sectionApps a {
-    color: #f84;
+    /*color: #f84;*/
 }
 
 #sectionApps a:hover {
-    color: #f04;
+    /*color: #f04;*/
 }
 
 .blocks {
@@ -219,7 +223,7 @@ img.aspect-fit {
 }
 
 .blocks article {
-    border-radius: 2px;
+    /*border-radius: 2px;*/
     padding: 15px;
     position: relative;
 }
@@ -230,7 +234,7 @@ img.aspect-fit {
 /*}*/
 
 .blocks article:hover figcaption h1 a {
-    color: #f04;
+    /*color: #f04;*/
     /*text-decoration: none;*/
 }
 
@@ -281,9 +285,9 @@ time {
 /*}*/
 
 .category {
-    background: #ffc;
-    border-radius: 0.5em;
-    color: #686860;
+    /*background: #ffc;*/
+    /*border-radius: 0.5em;*/
+    /*color: #686860;*/
     display: inline-block;
     font-weight: 700;
     line-height: 1;
