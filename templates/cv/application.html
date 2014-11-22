@@ -26,19 +26,21 @@
     <header id="header" role="banner">
         <div class="wrapper">
             <h1>
-                <a {% if pr_path|equals:fp %} class="active" {% endif %}
-                                              href="{{ pr_path }}">nikitos iOS</a>
-
-                <p>we build, you own</p>
+                {% if pr_path|equals:fp %}
+                    <p>We build, you own</p>
+                {% else %}
+                    <a href="{{ pr_path }}"><p>We build, you own</p></a>
+                {% endif %}
             </h1>
         </div>
     </header>
     <nav id="nav" role="navigation">
         <div class="wrapper">
             <ul id="linksSite">
-                <li><a {% if pr_path|equals:fp or "/projects"|starts:fp %} class="active" {% endif %} href="{{ pr_path }}">Projects</a></li>
-{#                <li><a {% if ps_path|starts:fp %} class="active" {% endif %} href="{{ ps_path }}">Posts</a></li>#}
-{#                <li><a {% if sc_path|starts:fp %} class="active" {% endif %} href="{{ sc_path }}">Screencasts</a></li>#}
+                <li><a {% if pr_path|equals:fp or "/projects"|starts:fp %} class="active" {% endif %}
+                                                                           href="{{ pr_path }}">Projects</a></li>
+                {#                <li><a {% if ps_path|starts:fp %} class="active" {% endif %} href="{{ ps_path }}">Posts</a></li>#}
+                {#                <li><a {% if sc_path|starts:fp %} class="active" {% endif %} href="{{ sc_path }}">Screencasts</a></li>#}
             </ul>
             <ul id="linksPromo">
                 <a href="mailto:nikita@nikitosios.com">Contact us</a>
