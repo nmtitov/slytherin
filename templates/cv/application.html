@@ -23,22 +23,27 @@
     <![endif]-->
     </head>
     <body>
-    <header id="header" role="banner">
-        <div class="wrapper">
-            <h1>
-                {% if pr_path|equals:fp %}
-                    <p>We build, you own</p>
-                {% else %}
-                    <a href="{{ pr_path }}"><p>We build, you own</p></a>
-                {% endif %}
-            </h1>
-        </div>
-    </header>
+{#    <header id="header" role="banner">#}
+{#        <div class="wrapper">#}
+{#            <h1>#}
+{#                {% if pr_path|equals:fp %}#}
+{#                    <p>We build, you own</p>#}
+{#                {% else %}#}
+{#                    <a href="{{ pr_path }}"><p>We build, you own</p></a>#}
+{#                {% endif %}#}
+{#            </h1>#}
+{#        </div>#}
+{#    </header>#}
     <nav id="nav" role="navigation">
         <div class="wrapper">
             <ul id="linksSite">
-                <li><a {% if pr_path|equals:fp or "/projects"|starts:fp %} class="active" {% endif %}
-                                                                           href="{{ pr_path }}">Projects</a></li>
+                <li>
+                    {% if pr_path|equals:fp %}
+                        <a>Projects</a>
+                    {% else %}
+                        <a href="{{ pr_path }}">Projects</a>
+                    {% endif %}
+                </li>
                 {#                <li><a {% if ps_path|starts:fp %} class="active" {% endif %} href="{{ ps_path }}">Posts</a></li>#}
                 {#                <li><a {% if sc_path|starts:fp %} class="active" {% endif %} href="{{ sc_path }}">Screencasts</a></li>#}
             </ul>
