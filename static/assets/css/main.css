@@ -59,6 +59,7 @@ header h1 {
     line-height: 1.2;
     display: inline-block;
     vertical-align: top;
+    margin-bottom: 1.5em;
 }
 
 .logo {
