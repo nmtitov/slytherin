@@ -29,6 +29,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '.nikitosios.com',   # Allow domain and subdomains
     '.nikitosios.com.',  # Also allow FQDN and subdomains
+    '.nmtitov.com',   # Allow domain and subdomains
+    '.nmtitov.com.',  # Also allow FQDN and subdomains
 ]
 
 
