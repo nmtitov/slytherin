@@ -1,5 +1,5 @@
 """
-Django settings for nikitosios project.
+Django settings for website project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -27,8 +27,8 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '.nikitosios.com',   # Allow domain and subdomains
-    '.nikitosios.com.',  # Also allow FQDN and subdomains
+    '.website.com',   # Allow domain and subdomains
+    '.website.com.',  # Also allow FQDN and subdomains
     '.nmtitov.com',   # Allow domain and subdomains
     '.nmtitov.com.',  # Also allow FQDN and subdomains
 ]
@@ -57,9 +57,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'nikitosios.urls'
+ROOT_URLCONF = 'website.urls'
 
-WSGI_APPLICATION = 'nmtitov.wsgi.application'
+WSGI_APPLICATION = 'website.wsgi.application'
 
 
 # Database
