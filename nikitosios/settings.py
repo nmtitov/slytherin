@@ -59,7 +59,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'nikitosios.urls'
 
-WSGI_APPLICATION = 'nikitosios.wsgi.application'
+WSGI_APPLICATION = 'nmtitov.wsgi.application'
 
 
 # Database
@@ -97,7 +97,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    '/var/www/nikitosios/static_dir/',
+    '/var/www/nmtitov/static_dir/',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = [
@@ -112,4 +112,4 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 REDACTOR_OPTIONS = {'lang': 'en'}
 REDACTOR_UPLOAD = 'media/redactor'
 
-STATIC_ROOT = "/var/www/nikitosios/static_root/"
+STATIC_ROOT = "/var/www/nmtitov/static_root/"
