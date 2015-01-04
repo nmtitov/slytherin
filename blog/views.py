@@ -16,8 +16,3 @@ def detail(request, project_slug=None):
         raise Http404
     context = dict(project=x)
     return render(request, 'blog/detail.html', context)
-
-
-def plaintext_projects(request):
-    xs = Project.objects.filter(published=True).order_by('-pub_date')
-    return render(request, 'blog/plaintext_projects.html', dict(projects=xs))
