@@ -2,20 +2,19 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import redactor.fields
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cv', '0010_auto_20141109_1253'),
+        ('blog', '0006_auto_20141109_1220'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='project',
-            name='body',
-            field=redactor.fields.RedactorField(verbose_name='Body'),
+            name='slug',
+            field=models.CharField(unique=True, db_index=True, max_length=1024),
             preserve_default=True,
         ),
     ]

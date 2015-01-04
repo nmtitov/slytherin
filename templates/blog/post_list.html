@@ -1,22 +1,20 @@
-{% extends "cv/application.html" %}
+{% extends "blog/application.html" %}
 
 {% block content %}
 
     <section id="sectionBlog">
         <div class="wrapper">
-            <header>
-                <h1>Mobile and Desktop Apps We Made</h1>
             </header>
             <div class="section-content">
-                <ul id="list_posts" class="blocks">
+                <ul id="listPosts" class="blocks">
 
                     {% for project in object_list %}
 
                         <li>
                             <article>
                                 <figure>
-                                    {% if project.thumbnail_url %}
-                                        <div class="img-wrapper"><img src="{{ project.thumbnail_url }}" alt="" width="200" height="200"></div>
+                                    {% if project.preview_url %}
+                                        <div class="img-wrapper"><img src="{{ project.preview_url }}" alt=""></div>
                                     {% endif %}
                                     <figcaption><h1><a
                                             href="{% url 'detail' project_slug=project.slug %}">{{ project.project_title }}</a>

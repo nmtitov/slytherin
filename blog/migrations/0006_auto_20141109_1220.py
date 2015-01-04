@@ -8,7 +8,7 @@ from django.template.defaultfilters import slugify
 def add_slug_to_projects(apps, schema_editor):
     # We can't import the Person model directly as it may be a newer
     # version than this migration expects. We use the historical version.
-    Project = apps.get_model("cv", "Project")
+    Project = apps.get_model("blog", "Project")
     for p in Project.objects.all():
         p.slug = slugify(p.title)
         p.save()
@@ -17,7 +17,7 @@ def add_slug_to_projects(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cv', '0005_project_slug'),
+        ('blog', '0005_project_slug'),
     ]
 
     operations = [

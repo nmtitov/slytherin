@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import cv.models
+import blog.models
 
 
 class Migration(migrations.Migration):
@@ -30,8 +30,8 @@ class Migration(migrations.Migration):
             name='Screenshot',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('profile_image', models.ImageField(null=True, upload_to=cv.models.get_image_path, blank=True)),
-                ('project', models.ForeignKey(to='cv.Project')),
+                ('profile_image', models.ImageField(null=True, upload_to=blog.models.get_image_path, blank=True)),
+                ('project', models.ForeignKey(to='blog.Project')),
             ],
             options={
             },

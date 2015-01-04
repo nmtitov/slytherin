@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, url
-from cv import models
+from blog import models
 
 
-urlpatterns = patterns('cv.views',
+urlpatterns = patterns('blog.views',
     url(r'^$', 'object_list', {'model': models.Project}, name='projects'),
     url(r'^projects$', 'object_list', {'model': models.Project}),
     url(r'^projects/(?P<project_slug>[A-Za-z0-9_-]+)/$', 'detail', name='detail'),

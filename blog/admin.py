@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cv.models import Project, Screenshot
+from blog.models import Project, Screenshot
 
 
 class ScreenshotInline(admin.StackedInline):

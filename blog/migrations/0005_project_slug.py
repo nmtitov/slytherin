@@ -7,14 +7,14 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cv', '0012_project_preview'),
+        ('blog', '0004_project_content'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='project',
-            name='published',
-            field=models.BooleanField(default=False, db_index=True),
+            name='slug',
+            field=models.CharField(null=True, db_index=True, max_length=1024),
             preserve_default=True,
         ),
     ]
