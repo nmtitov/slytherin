@@ -49,17 +49,10 @@
                 {#                <li><a {% if sc_path|starts:fp %} class="active" {% endif %} href="{{ sc_path }}">Screencasts</a></li>#}
             </ul>
             <ul id="links_promo">
-
+                <li><a href="/">Home</a></li>
+                <li><a href="/apps">Apps</a></li>
+                <li><a href="/posts">Blog</a></li>
             </ul>
-            {#        <ul id="links_site">#}
-            {#            <!--<li><a href="/">Home</a></li>-->#}
-            {#            <li></li>#}
-            {#            <!--<li><a href="/apps">Apps</a></li>-->#}
-            {#            <!--<li><a href="/posts">Blog</a></li>-->#}
-            {#        </ul>#}
-            <!--<ul id="linksPromo">-->
-            <!--<li><a href="https://twitter.com/">Wanna tweet?</a></li>-->
-            <!--</ul>-->
         </div>
     </nav>
     <main id="main" role="main">
@@ -67,10 +60,16 @@
     </main>
     <footer id="footer" role="contentinfo">
         <div class="wrapper">
-            <p>
-                E-mail: <a href="mailto:{{ settings.email }}">{{ settings.email }}</a><br>
-                {{ settings.copyright }}
-            </p>
+            {% if settings %}
+                <p>
+                    {% if settings.email %}
+                        E-mail: <a href="mailto:{{ settings.email }}">{{ settings.email }}</a><br>
+                    {% endif %}
+                    {% if settings.copyright %}
+                        {{ settings.copyright }}
+                    {% endif %}
+                </p>
+            {% endif %}
         </div>
     </footer>
     {{ settings.yandex_metrika|safe }}

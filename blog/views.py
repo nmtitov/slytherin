@@ -1,22 +1,29 @@
 from django.shortcuts import render
 from django.http import Http404
-from blog.models import Project, Settings
+from blog.models import Post, Settings
 
 
 def get_settings() -> Settings:
     return Settings.objects.first()
 
 
-def object_list(request, model):
-    xs = model.objects.filter(published=True).order_by('-pub_date')
-    template_name = 'blog/%s_list.html' % model.__name__.lower()
-    return render(request, template_name, {'object_list': xs, 'settings': get_settings()})
+def get_posts() -> list:
+    Post.objects.filter(published=True).order_by('-pub_date')
 
 
-def detail(request, project_slug=None):
+def get_post(slug: str):
+    return Post.objects.filter(published=True).get(slug=slug)
+
+
+def posts(request):
+    template_name = "blog/posts.html"
+    return render(request, template_name, dict(posts=get_posts(), settings=get_settings()))
+
+
+def post(request, slug: str=None):
     try:
-        x = Project.objects.filter(published=True).get(slug=project_slug)
-    except Project.DoesNotExist:
+        p = get_post(slug)
+    except Post.DoesNotExist:
         raise Http404
-    context = dict(project=x)
-    return render(request, 'blog/detail.html', context)
+    context = dict(post=p)
+    return render(request, 'blog/post.html', context)

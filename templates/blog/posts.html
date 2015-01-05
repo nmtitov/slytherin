@@ -10,16 +10,16 @@
             <div class="section-content">
                 <ul id="list_posts" class="blocks">
 
-                    {% for project in object_list %}
+                    {% for post in posts %}
 
                         <li>
                             <article>
                                 <figure>
-                                    {% if project.thumbnail_url %}
-                                        <div class="img-wrapper"><img src="{{ project.thumbnail_url }}" alt="" width="200" height="200"></div>
+                                    {% if post.thumbnail_url %}
+                                        <div class="img-wrapper"><img src="{{ post.thumbnail_url }}" alt="" width="200" height="200"></div>
                                     {% endif %}
                                     <figcaption><h1><a
-                                            href="{% url 'detail' project_slug=project.slug %}">{{ project.project_title }}</a>
+                                            href="{% url 'detail' project_slug=post.slug %}">{{ post.project_title }}</a>
                                     </h1>
                                     </figcaption>
                                 </figure>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Project, Screenshot, Settings
+from blog.models import Post, Screenshot, Settings
 
 
 class ScreenshotInline(admin.StackedInline):
@@ -11,7 +11,7 @@ class ProjectAdmin(admin.ModelAdmin):
     inlines = [ScreenshotInline]
 
 
-admin.site.register(Project, ProjectAdmin)
+admin.site.register(Post, ProjectAdmin)
 
 
 class SettingsAdmin(admin.ModelAdmin):

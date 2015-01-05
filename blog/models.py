@@ -8,7 +8,7 @@ def get_image_path(screenshot, filename):
     return os.path.join("screenshots", slugify(screenshot.project.title), filename)
 
 
-class Project(models.Model):
+class Post(models.Model):
     published = models.BooleanField(default=False, db_index=True)
     pub_date = models.DateTimeField('date published', blank=True, null=True)
     title = models.CharField(max_length=1024)
@@ -36,17 +36,14 @@ class Project(models.Model):
         if not self.id:
             if not self.slug:
                 self.slug = self.auto_slug()
-        super(Project, self).save(*args, **kwargs)
+        super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
 
-    class Meta:
-        abstract = True
-
 
 class Screenshot(models.Model):
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Post)
     image_path = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
     def __str__(self):
