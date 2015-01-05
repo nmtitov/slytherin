@@ -62,3 +62,15 @@ class Post(CommonInfo):
 
 class Screencast(CommonInfo):
     pass
+
+
+class Settings(models.Model):
+    title = models.CharField(max_length=1024)
+    copyright = models.CharField(max_length=1024)
+    email = models.EmailField(max_length=254)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "settings"

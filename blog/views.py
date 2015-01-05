@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import Http404
-from blog.models import Project
+from blog.models import Project, Settings
 
 
 def object_list(request, model):
     xs = model.objects.filter(published=True).order_by('-pub_date')
     template_name = 'blog/%s_list.html' % model.__name__.lower()
-    return render(request, template_name, {'object_list': xs})
+    settings = Settings.objects.first()
+    return render(request, template_name, {'object_list': xs, 'settings': settings})
 
 
 def detail(request, project_slug=None):
