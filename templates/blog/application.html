@@ -38,20 +38,13 @@
     <nav id="nav" role="navigation">
         <div class="wrapper">
             <ul id="links_site">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Screencast</a></li>
+                <li><a href="#">Anatomical Theatre</a></li>
                 <li>
-                    {% if pr_path|equals:fp %}
-                        <a class="active">Projects</a>
-                    {% else %}
-                        <a href="{{ pr_path }}">Projects</a>
-                    {% endif %}
+                    <a {% if pr_path|equals:fp %} class="active" {% else %}
+                                                  href="{{ pr_path }}" {% endif %}>Production</a>
                 </li>
-                {#                <li><a {% if ps_path|starts:fp %} class="active" {% endif %} href="{{ ps_path }}">Posts</a></li>#}
-                {#                <li><a {% if sc_path|starts:fp %} class="active" {% endif %} href="{{ sc_path }}">Screencasts</a></li>#}
-            </ul>
-            <ul id="links_promo">
-                <li><a href="/">Home</a></li>
-                <li><a href="/apps">Apps</a></li>
-                <li><a href="/posts">Blog</a></li>
             </ul>
         </div>
     </nav>
