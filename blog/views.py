@@ -3,11 +3,14 @@ from django.http import Http404
 from blog.models import Project, Settings
 
 
+def get_settings() -> Settings:
+    return Settings.objects.first()
+
+
 def object_list(request, model):
     xs = model.objects.filter(published=True).order_by('-pub_date')
     template_name = 'blog/%s_list.html' % model.__name__.lower()
-    settings = Settings.objects.first()
-    return render(request, template_name, {'object_list': xs, 'settings': settings})
+    return render(request, template_name, {'object_list': xs, 'settings': get_settings()})
 
 
 def detail(request, project_slug=None):
