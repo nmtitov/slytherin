@@ -68,6 +68,7 @@ class Settings(models.Model):
     title = models.CharField(max_length=1024)
     copyright = models.CharField(max_length=1024)
     email = models.EmailField(max_length=254)
+    yandex_metrika = models.TextField()
 
     def __str__(self):
         return self.title
