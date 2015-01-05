@@ -122,4 +122,4 @@ crashlytics-build.properties
 *.swp
 *.swo
 
-db.sqlite3
+*.sqlite3
