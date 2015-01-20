@@ -3,10 +3,6 @@ from django.http import Http404
 from blog.models import Post, Settings
 
 
-def get_settings() -> Settings:
-    return Settings.objects.first()
-
-
 def get_posts() -> list:
     Post.objects.filter(published=True).order_by('-pub_date')
 
@@ -17,7 +13,7 @@ def get_post(slug: str):
 
 def posts(request):
     template_name = "blog/posts.html"
-    return render(request, template_name, dict(posts=get_posts(), settings=get_settings()))
+    return render(request, template_name, dict(posts=get_posts(), settings=Settings.shared_instance()))
 
 
 def post(request, slug: str=None):

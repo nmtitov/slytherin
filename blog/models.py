@@ -59,5 +59,11 @@ class Settings(models.Model):
     def __str__(self):
         return self.title
 
+    @classmethod
+    def shared_instance(cls):
+        if not cls.objects.exists():
+            cls().save()
+        return cls.objects.first()
+
     class Meta:
         verbose_name_plural = "settings"
