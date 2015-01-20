@@ -123,3 +123,4 @@ crashlytics-build.properties
 *.swo
 
 db.sqlite3
+db.backup.sqlite3
