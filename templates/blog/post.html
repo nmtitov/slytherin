@@ -1,14 +1,14 @@
-{% extends "cv/application.html" %}
+{% extends "blog/application.html" %}
 
 {% block content %}
 
     <section id="sectionBlog">
         <div class="wrapper">
             <header>
-                <h1>{{ project.project_title }}</h1>
+                <h1>{{ post.title }}</h1>
             </header>
             <div class="section-content">
-                {{ project.process_description|safe }}
+                {{ post.body|safe }}
             </div>
         </div>
     </section>

@@ -303,6 +303,14 @@ time {
     z-index: 10;
 }
 
+#page_production #nav_production {
+    font-weight: bold;
+    text-decoration: none;
+    color: #000000;
+    pointer-events: none;
+    cursor: default;
+}
+
 @media (max-width: 1200px) {
     .blocks li {
         width: 50%;

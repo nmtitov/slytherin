@@ -1,0 +1,45 @@
+{% extends "blog/application.html" %}
+
+{% block page %}page_production{% endblock %}
+
+{% block content %}
+
+    <section id="sectionBlog">
+        <div class="wrapper">
+            <header>
+                <h1>Mobile and Desktop Apps We Made</h1>
+            </header>
+            <div class="section-content">
+                <ul id="list_posts" class="blocks">
+
+                    {% for post in posts %}
+
+                        <li>
+                            <article>
+                                <figure>
+                                    {% if post.thumbnail_url %}
+                                        <div class="img-wrapper">
+                                            <img src="{{ post.thumbnail_image }}"
+                                                 alt=""
+                                                 width="200"
+                                                 height="200">
+                                        </div>
+                                    {% endif %}
+                                    <figcaption>
+                                        <h1>
+                                            <a href="{% url 'post' slug=post.slug %}">
+                                                {{ post.title }}
+                                            </a>
+                                        </h1>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
