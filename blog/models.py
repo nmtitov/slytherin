@@ -1,27 +1,19 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-import os
-from redactor.fields import RedactorField
 
 
-def get_image_path(screenshot, filename):
-    return os.path.join("screenshots", slugify(screenshot.project.title), filename)
+IMAGES_DIR = "images"
 
 
 class Post(models.Model):
     published = models.BooleanField(default=False, db_index=True)
-    pub_date = models.DateTimeField('date published', blank=True, null=True)
-    title = models.CharField(max_length=1024)
+    publication_date = models.DateTimeField(blank=True, null=True)
+    thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
     slug = models.CharField(max_length=1024, db_index=True, null=False, unique=True)
+    title = models.CharField(max_length=1024)
     lead = models.TextField(blank=True, null=True)
-    body = RedactorField(verbose_name="Body", blank=True, null=True)
-    preview = models.OneToOneField('Screenshot', related_name='preview', blank=True, null=True, unique=False)
-    project_title = models.CharField(max_length=1024)
-    download_url = models.CharField(max_length=1024, blank=True)
-    store_button = models.TextField(blank=True)
-    process_title = models.CharField(max_length=1024)
-    process_description = RedactorField(verbose_name="Process description")
-    thumbnail_url = models.CharField(max_length=1024)
+    body = models.TextField(blank=True, null=True)
+    release_date = models.DateTimeField(blank=True, null=True)
 
     def preview_url(self):
         try:
@@ -42,22 +34,25 @@ class Post(models.Model):
         return self.title
 
 
-class Screenshot(models.Model):
-    project = models.ForeignKey(Post)
-    image_path = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+class Image(models.Model):
+    post = models.ForeignKey(Post)
+    file = models.ImageField(upload_to=IMAGES_DIR, blank=True, null=True)
+
+    def url(self):
+        return self.file.url
 
     def __str__(self):
-        return self.image_path.url
+        return self.url()
 
 
 class Settings(models.Model):
-    title = models.CharField(max_length=1024)
-    copyright = models.CharField(max_length=1024)
-    email = models.EmailField(max_length=254)
-    yandex_metrika = models.TextField()
+    blog_title = models.CharField(max_length=1024)
+    blog_copyright = models.CharField(max_length=1024)
+    author_email = models.EmailField(max_length=254)
+    counter_yandex_metrika = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.title
+        return self.blog_title
 
     @classmethod
     def shared_instance(cls):

@@ -1,9 +1,9 @@
 from django.contrib import admin
-from blog.models import Post, Screenshot, Settings
+from blog.models import Post, Image, Settings
 
 
 class ScreenshotInline(admin.StackedInline):
-    model = Screenshot
+    model = Image
     extra = 4
 
 

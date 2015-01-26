@@ -3,23 +3,18 @@ from django.http import Http404
 from blog.models import Post, Settings
 
 
-def get_posts() -> list:
-    Post.objects.filter(published=True).order_by('-pub_date')
-
-
-def get_post(slug: str):
-    return Post.objects.filter(published=True).get(slug=slug)
-
-
 def posts(request):
     template_name = "blog/posts.html"
-    return render(request, template_name, dict(posts=get_posts(), settings=Settings.shared_instance()))
+    xs = Post.objects.filter(published=True).order_by('-publication_date')
+    context = dict(posts=xs, settings=Settings.shared_instance())
+    return render(request, template_name, context)
 
 
 def post(request, slug: str=None):
+    template_name = 'blog/post.html'
     try:
-        p = get_post(slug)
+        x = Post.objects.filter(published=True).get(slug=slug)
     except Post.DoesNotExist:
         raise Http404
-    context = dict(post=p)
-    return render(request, 'blog/post.html', context)
+    context = dict(post=x)
+    return render(request, template_name, context)

@@ -123,3 +123,5 @@ crashlytics-build.properties
 *.swo
 
 *.sqlite3
+
+media/images

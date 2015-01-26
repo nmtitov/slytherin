@@ -18,49 +18,25 @@
                             <article>
                                 <figure>
                                     {% if post.thumbnail_url %}
-                                        <div class="img-wrapper"><img src="{{ post.thumbnail_url }}" alt="" width="200" height="200"></div>
+                                        <div class="img-wrapper">
+                                            <img src="{{ post.thumbnail_image }}"
+                                                 alt=""
+                                                 width="200"
+                                                 height="200">
+                                        </div>
                                     {% endif %}
-                                    <figcaption><h1><a
-                                            href="{% url 'detail' project_slug=post.slug %}">{{ post.project_title }}</a>
-                                    </h1>
+                                    <figcaption>
+                                        <h1>
+                                            <a href="{% url 'post' slug=post.slug %}">
+                                                {{ post.title }}
+                                            </a>
+                                        </h1>
                                     </figcaption>
                                 </figure>
-                                <!--<img class="center" src="img/meow.png" />-->
-                                <!--<h1><a href="#">Puzzle Cats 1.2</a></h1>-->
-
-                                <!--<p>Тихо и незаметно вышло обновление 1.2, в котором я вернул цену 0.99$ за игру, а все-->
-                                <!--уровни стали бесплатными.</p>-->
-                                <!--<footer>-->
-                                <!--<time datetime="Thu Jul 18 2013 00:00:00 GMT+0200 (EET)">Thursday, July 18, 2013</time>-->
-                                <!--on <a href="#" class="category games">games</a></footer>-->
                             </article>
                         </li>
 
                     {% endfor %}
-
-                    {#                        <div class="col-sm-4 project">#}
-                    {#                            <h1><a href="#{{ project.slug }}" name="{{ project.title }}">{{ project.title }}</a></h1>#}
-                    {##}
-                    {#                            <p>#}
-                    {#                                {{ project.store_button|safe }}#}
-                    {#                            </p>#}
-                    {##}
-                    {#                            <p class="lead">{{ project.lead }}</p>#}
-                    {##}
-                    {#                            <ul class="thumbs">#}
-                    {#                                {% for screenshot in project.screenshot_set.all %}#}
-                    {#                                    <li><span class="round"><img src="{{ screenshot.image_path.url }}"></span></li>#}
-                    {#                                {% endfor %}#}
-                    {##}
-                    {#                            </ul>#}
-                    {##}
-                    {#                            <p class="">{{ project.body }}</p>#}
-                    {##}
-                    {#                            <a class="btn btn-large btn-success"#}
-                    {#                               href="{{ project.download_url }}"#}
-                    {#                               target="itunes_store">Загрузить сейчас</a>#}
-                    {#                        </div>#}
-
                 </ul>
             </div>
         </div>
