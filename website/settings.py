@@ -93,7 +93,10 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+if DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+else:
+    MEDIA_ROOT = '/var/www/nmtitov/media/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
