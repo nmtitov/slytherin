@@ -6,7 +6,8 @@ from blog.models import Post, Settings
 def posts(request):
     template_name = "blog/posts.html"
     xs = Post.objects.filter(published=True).order_by('-publication_date')
-    context = dict(posts=xs, settings=Settings.shared_instance())
+    settings = Settings.shared_instance()
+    context = dict(posts=xs, settings=settings)
     return render(request, template_name, context)
 
 
@@ -16,5 +17,6 @@ def post(request, slug: str=None):
         x = Post.objects.filter(published=True).get(slug=slug)
     except Post.DoesNotExist:
         raise Http404
-    context = dict(post=x)
+    settings = Settings.shared_instance()
+    context = dict(post=x, settings=settings)
     return render(request, template_name, context)

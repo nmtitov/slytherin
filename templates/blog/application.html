@@ -35,16 +35,16 @@
     <div class="wrapper">
         {% if settings %}
             <p>
-                {% if settings.email %}
-                    E-mail: <a href="mailto:{{ settings.email }}">{{ settings.email }}</a><br>
+                {% if settings.author_email %}
+                    E-mail: <a href="mailto:{{ settings.author_email }}">{{ settings.author_email }}</a><br>
                 {% endif %}
-                {% if settings.copyright %}
-                    {{ settings.copyright }}
+                {% if settings.blog_copyright %}
+                    {{ settings.blog_copyright }}
                 {% endif %}
             </p>
         {% endif %}
     </div>
 </footer>
-{{ settings.yandex_metrika|safe }}
+{{ settings.counter_yandex_metrika|safe }}
 </body>
 </html>
