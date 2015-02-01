@@ -318,6 +318,10 @@ time {
     float: left;
 }
 
+.section_post .side h2, b {
+    font-weight: bold;
+}
+
 @media (max-width: 1200px) {
     .blocks li {
         width: 50%;
