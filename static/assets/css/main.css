@@ -186,25 +186,17 @@ footer {
 .blocks article figure {
 }
 
-.blocks article figure .img-wrapper {
+.blocks article figure .container {
     width: 200px;
     height: 200px;
-    min-width: 200px;
-    min-height: 200px;
-    max-width: 200px;
-    max-height: 200px;
-    vertical-align: middle;
-    margin-bottom: 2em;
-    /*position: relative;*/
+    margin: auto auto 2em auto;
 }
 
-.img-wrapper img {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.container img {
+    display:block;
+    margin:auto;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .blocks article figcaption {

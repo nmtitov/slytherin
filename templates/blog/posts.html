@@ -18,11 +18,8 @@
                             <article>
                                 <figure>
                                     {% if post.thumbnail_image %}
-                                        <div class="img-wrapper">
-                                            <img src="{{ post.thumbnail_image.url }}"
-                                                 alt=""
-                                                 width="200"
-                                                 height="200">
+                                        <div class="container">
+                                            <img src="{{ post.thumbnail_image.url }}" >
                                         </div>
                                     {% endif %}
                                     <figcaption>
