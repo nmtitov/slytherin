@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from os import path as op
 from bs4 import BeautifulSoup as Soup
+from django.core.exceptions import ObjectDoesNotExist
 
 IMAGES_DIR = "images"
 
@@ -30,7 +31,7 @@ class Post(models.Model):
                 img['width'] = image_model.width
                 img['height'] = image_model.height
                 img['alt'] = image_model.alt
-            except (KeyError, self.DoesNotExist) as e:
+            except (KeyError, ObjectDoesNotExist) as e:
                 pass
         self.compiled_body = str(soup)
 
