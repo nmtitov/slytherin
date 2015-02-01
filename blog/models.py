@@ -1,6 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-
+from os import path as op
 
 IMAGES_DIR = "images"
 
@@ -30,13 +30,36 @@ class Post(models.Model):
 
 class Image(models.Model):
     post = models.ForeignKey(Post)
-    file = models.ImageField(upload_to=IMAGES_DIR, blank=True, null=True)
+    file = models.ImageField(upload_to=IMAGES_DIR)
+    retina = models.BooleanField(default=False)
+    slug = models.CharField(max_length=32, blank=True, null=True)
+    alt = models.CharField(max_length=1024, blank=True, null=True)
 
+    @property
+    def height(self):
+        return self.file.height // 2 if self.retina else self.file.height
+
+    @property
+    def width(self):
+        return self.file.width // 2 if self.retina else self.file.width
+
+    @property
     def url(self):
         return self.file.url
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            n, e = op.splitext(op.basename(self.file.name))
+            self.slug = n
+        if not self.alt:
+            self.alt = self.slug
+        super(Image, self).save(*args, **kwargs)
+
     def __str__(self):
-        return self.url()
+        return "{post}-{image}".format(post=self.post.slug, image=self.slug)
+
+    class Meta:
+        index_together = ["post", "slug"]
 
 
 class Settings(models.Model):
