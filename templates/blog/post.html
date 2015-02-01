@@ -13,7 +13,7 @@
                 {% endif %}
             </header>
             <article class="body">
-                {{ post.body|safe }}
+                {{ post.compiled_body|safe }}
             </article>
             {% if post.side %}
                 <aside class="side">

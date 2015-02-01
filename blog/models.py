@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from os import path as op
+from bs4 import BeautifulSoup as Soup
 
 IMAGES_DIR = "images"
 
@@ -15,15 +16,29 @@ class Post(models.Model):
     verbose_title = models.CharField(max_length=1024)
     lead = models.TextField(blank=True, null=True)
     body = models.TextField(blank=True, null=True)
-    body = models.TextField(blank=True, null=True)
     compiled_body = models.TextField(blank=True, null=True, editable=False)
     side = models.TextField(blank=True, null=True)
     release_date = models.DateTimeField(blank=True, null=True)
+
+    def compile(self):
+        soup = Soup(self.body)
+        for img in soup.find_all("img"):
+            try:
+                data_slug = img['data-slug']
+                image_model = self.image_set.get(slug=data_slug)
+                img['src'] = image_model.url
+                img['width'] = image_model.width
+                img['height'] = image_model.height
+                img['alt'] = image_model.alt
+            except KeyError:
+                pass
+        self.compiled_body = str(soup)
 
     def save(self, *args, **kwargs):
         if not self.id:
             if not self.slug:
                 self.slug = self.slugify(self.title)
+        self.compile()
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -61,7 +76,7 @@ class Image(models.Model):
         return "{post}-{image}".format(post=self.post.slug, image=self.slug)
 
     class Meta:
-        index_together = ["post", "slug"]
+        index_together = unique_together = ["post", "slug"]
 
 
 class Settings(models.Model):
