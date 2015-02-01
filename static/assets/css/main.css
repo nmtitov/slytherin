@@ -186,7 +186,7 @@ footer {
 .blocks article figure {
 }
 
-.blocks article figure .img-wrapper {
+.blocks article figure .container {
     width: 200px;
     height: 200px;
     min-width: 200px;
@@ -198,7 +198,7 @@ footer {
     /*position: relative;*/
 }
 
-.img-wrapper img {
+.container img {
     position: absolute;
     margin: auto;
     top: 0;
