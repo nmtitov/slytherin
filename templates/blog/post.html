@@ -3,7 +3,7 @@
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
 
-    <section id="sectionBlog">
+    <section class="section_post">
         <div class="wrapper">
             <header>
                 {% if post.preview %}
@@ -12,10 +12,16 @@
                     <h1>{{ post.title }}</h1>
                 {% endif %}
             </header>
-            <div class="section-content">
+            <article class="body">
                 {{ post.body|safe }}
-            </div>
+            </article>
+            {% if post.side %}
+                <aside class="side">
+                    {{ post.side|safe }}
+                </aside>
+            {% endif %}
         </div>
+        <div class="clear"/>
     </section>
 
 {% endblock %}

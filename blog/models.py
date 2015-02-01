@@ -14,6 +14,7 @@ class Post(models.Model):
     title = models.CharField(max_length=1024)
     lead = models.TextField(blank=True, null=True)
     body = models.TextField(blank=True, null=True)
+    side = models.TextField(blank=True, null=True)
     release_date = models.DateTimeField(blank=True, null=True)
 
     def preview_url(self):

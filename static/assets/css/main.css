@@ -73,7 +73,7 @@ footer {
 
 .wrapper {
     margin: auto;
-    max-width: 980px;
+    width: 980px;
     padding: 10px;
 }
 
@@ -303,6 +303,21 @@ time {
     cursor: default;
 }
 
+.clear {
+    clear: both;
+}
+
+.section_post .body {
+    padding-right: 2em;
+    width: 77%;
+    float: left;
+}
+
+.section_post .side {
+    width: 23%;
+    float: left;
+}
+
 @media (max-width: 1200px) {
     .blocks li {
         width: 50%;
@@ -337,5 +352,11 @@ time {
 @media (max-width: 500px) {
     #links_site li {
         display: block;
+    }
+}
+
+@media (max-width: 980px) {
+    .wrapper {
+        width: 100%;
     }
 }
