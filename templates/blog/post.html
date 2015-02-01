@@ -5,7 +5,11 @@
     <section id="sectionBlog">
         <div class="wrapper">
             <header>
-                <h1>{{ post.title }}</h1>
+                {% if post.preview %}
+                    <h1>{{ post.title }} (Preview)</h1>
+                {% else %}
+                    <h1>{{ post.title }}</h1>
+                {% endif %}
             </header>
             <div class="section-content">
                 {{ post.body|safe }}

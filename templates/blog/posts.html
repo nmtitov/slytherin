@@ -28,7 +28,11 @@
                                     <figcaption>
                                         <h1>
                                             <a href="{% url 'post' slug=post.slug %}">
-                                                {{ post.title }}
+                                                {% if post.preview %}
+                                                    {{ post.title }} (Preview)
+                                                {% else %}
+                                                    {{ post.title }}
+                                                {% endif %}
                                             </a>
                                         </h1>
                                     </figcaption>
