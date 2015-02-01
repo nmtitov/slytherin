@@ -18,13 +18,10 @@ class Post(models.Model):
     side = models.TextField(blank=True, null=True)
     release_date = models.DateTimeField(blank=True, null=True)
 
-    def auto_slug(self):
-        return slugify(self.title)
-
     def save(self, *args, **kwargs):
         if not self.id:
             if not self.slug:
-                self.slug = self.auto_slug()
+                self.slug = self.slugify(self.title)
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
