@@ -51,6 +51,7 @@ class Image(models.Model):
     retina = models.BooleanField(default=False)
     slug = models.CharField(max_length=32, blank=True, null=True)
     alt = models.CharField(max_length=1024, blank=True, null=True)
+    caption = models.CharField(max_length=1024, blank=True, null=True)
 
     @property
     def height(self):
