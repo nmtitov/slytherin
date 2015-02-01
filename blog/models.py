@@ -30,7 +30,7 @@ class Post(models.Model):
                 img['width'] = image_model.width
                 img['height'] = image_model.height
                 img['alt'] = image_model.alt
-            except KeyError:
+            except (KeyError, self.DoesNotExist) as e:
                 pass
         self.compiled_body = str(soup)
 
