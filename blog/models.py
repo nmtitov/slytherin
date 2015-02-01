@@ -7,6 +7,7 @@ IMAGES_DIR = "images"
 
 class Post(models.Model):
     published = models.BooleanField(default=False, db_index=True)
+    preview = models.BooleanField(default=False, db_index=True)
     publication_date = models.DateTimeField(blank=True, null=True)
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
     slug = models.CharField(max_length=1024, db_index=True, null=False, unique=True)
