@@ -18,12 +18,6 @@ class Post(models.Model):
     side = models.TextField(blank=True, null=True)
     release_date = models.DateTimeField(blank=True, null=True)
 
-    def preview_url(self):
-        try:
-            return self.screenshot_set.all()[0].image_path.url
-        except IndexError:
-            return None
-
     def auto_slug(self):
         return slugify(self.title)
 
