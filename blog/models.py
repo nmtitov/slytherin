@@ -12,6 +12,7 @@ class Post(models.Model):
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
     slug = models.CharField(max_length=1024, db_index=True, null=False, unique=True)
     title = models.CharField(max_length=1024)
+    verbose_title = models.CharField(max_length=1024)
     lead = models.TextField(blank=True, null=True)
     body = models.TextField(blank=True, null=True)
     side = models.TextField(blank=True, null=True)

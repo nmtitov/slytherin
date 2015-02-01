@@ -7,9 +7,9 @@
         <div class="wrapper">
             <header>
                 {% if post.preview %}
-                    <h1>{{ post.title }} (Preview)</h1>
+                    <h1>{{ post.verbose_title }} (Preview)</h1>
                 {% else %}
-                    <h1>{{ post.title }}</h1>
+                    <h1>{{ post.verbose_title }}</h1>
                 {% endif %}
             </header>
             <article class="body">
