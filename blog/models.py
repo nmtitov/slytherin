@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 from os import path as op
 from bs4 import BeautifulSoup as Soup
 from django.core.exceptions import ObjectDoesNotExist
+from django.template import Template, Context
 
 IMAGES_DIR = "images"
 
@@ -26,10 +27,9 @@ class Post(models.Model):
         for img in soup.find_all("img"):
             try:
                 data_slug = img['data-slug']
-                image_model = self.image_set.get(slug=data_slug)
-                img['src'] = image_model.url
-                img['width'], img['height'] = image_model.size
-                img['alt'] = image_model.alt
+                im = self.image_set.get(slug=data_slug)
+                figure = Soup(im.figure_html)
+                img.replaceWith(figure)
             except (KeyError, ObjectDoesNotExist) as e:
                 pass
         self.compiled_body = str(soup)
@@ -52,6 +52,22 @@ class Image(models.Model):
     slug = models.CharField(max_length=32, blank=True, null=True)
     alt = models.CharField(max_length=1024, blank=True, null=True)
     caption = models.CharField(max_length=1024, blank=True, null=True)
+    figure_html_template_string = \
+        """
+        <figure class="post">
+            <div class="container">
+                <img src="{{ image.url }}"
+                    {% if image.alt %} alt="{{ image.alt }}" {% endif %}
+                    {% if image.caption %} title="{{ image.caption }}" {% endif %}
+                    width="{{ image.width }}"
+                    height="{{ image.height }}" />
+            </div>
+            {% if image.caption %}
+            <figcaption>{{ image.caption }}</figcaption>
+            {% endif %}
+        </figure>
+        """
+    figure_html_template = Template(figure_html_template_string)
 
     @property
     def height(self):
@@ -68,6 +84,11 @@ class Image(models.Model):
     @property
     def url(self):
         return self.file.url
+
+    @property
+    def figure_html(self):
+        context = Context({'image': self})
+        return self.figure_html_template.render(context)
 
     def save(self, *args, **kwargs):
         if not self.slug:

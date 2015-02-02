@@ -364,3 +364,9 @@ time {
         width: 100%;
     }
 }
+
+figure.post figcaption {
+    margin-top: 1em;
+    text-align: center;
+    font-style: italic;
+}
