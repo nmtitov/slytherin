@@ -28,8 +28,7 @@ class Post(models.Model):
                 data_slug = img['data-slug']
                 image_model = self.image_set.get(slug=data_slug)
                 img['src'] = image_model.url
-                img['width'] = image_model.width
-                img['height'] = image_model.height
+                img['width'], img['height'] = image_model.size
                 img['alt'] = image_model.alt
             except (KeyError, ObjectDoesNotExist) as e:
                 pass
@@ -61,6 +60,10 @@ class Image(models.Model):
     @property
     def width(self):
         return self.file.width // 2 if self.retina else self.file.width
+
+    @property
+    def size(self):
+        return self.width, self.height
 
     @property
     def url(self):
