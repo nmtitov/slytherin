@@ -370,3 +370,7 @@ figure.post figcaption {
     text-align: center;
     font-style: italic;
 }
+
+figure.post {
+    margin-bottom: 4em;
+}
