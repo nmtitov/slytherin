@@ -372,5 +372,6 @@ figure.post figcaption {
 }
 
 figure.post {
+    margin-top: 2em;
     margin-bottom: 4em;
 }
