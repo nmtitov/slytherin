@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'axes',
     'blog',
 )
 
@@ -54,6 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'axes.middleware.FailedLoginMiddleware',
 )
 
 ROOT_URLCONF = 'website.urls'
@@ -112,3 +114,5 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 STATIC_ROOT = "/var/www/nmtitov/static_root/"
+
+AXES_LOGIN_FAILURE_LIMIT = 10
