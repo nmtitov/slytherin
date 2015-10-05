@@ -74,7 +74,7 @@ footer {
 .wrapper {
     margin: auto;
     width: 980px;
-    padding: 10px;
+    padding: 2em 1em 1em 1em;
 }
 
 #nav {
@@ -89,7 +89,7 @@ footer {
 #links_site,
 #links_promo {
     display: inline-block;
-    margin: 2em 2em 0 0;
+    margin: 1em 2em 0 0;
 }
 
 #links_site li,
