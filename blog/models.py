@@ -43,8 +43,16 @@ class Post(models.Model):
         self.compile()
         super(Post, self).save(*args, **kwargs)
 
+    @property
+    def title_before_f(self):
+        return self.title_before + " " if self.title_before else ""
+
+    @property
+    def title_after_f(self):
+        return " " + self.title_after if self.title_after else ""
+
     def __str__(self):
-        return self.title
+        return self.title_before_f + self.title + self.title_after_f
 
 
 class Image(models.Model):
