@@ -52,7 +52,7 @@ class Post(models.Model):
         return " " + self.title_after if self.title_after else ""
 
     def __str__(self):
-        return self.title_before_f + self.title + self.title_after_f
+        return "%s (%s)" % (self.title, self.title_before_f + self.title + self.title_after_f)
 
 
 class Image(models.Model):
