@@ -21,7 +21,7 @@ body {
 }
 
 h1 {
-    letter-spacing: -0.05em;
+    /*letter-spacing: -0.05em;*/
     line-height: 1;
     margin: 0;
 }
