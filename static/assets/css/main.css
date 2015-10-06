@@ -208,6 +208,7 @@ footer {
     /*font-size: 1.5em;*/
     margin-top: 1em;
     letter-spacing: 0;
+    line-height: inherit;
 }
 
 img.center {
