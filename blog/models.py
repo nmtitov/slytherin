@@ -44,7 +44,14 @@ class Post(models.Model):
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        composite_title = self.title_before
+        if self.title_before:
+            composite_title += " "
+        composite_title += self.title
+        if self.title_after:
+            composite_title += " "
+        composite_title += self.title_after
+        return composite_title
 
 
 class Image(models.Model):
