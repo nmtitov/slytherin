@@ -59,14 +59,8 @@
 <footer id="footer" role="contentinfo">
     <div class="wrapper">
         {% if settings %}
-            <p>
-                {% if settings.author_email %}
-                    E-mail: <a href="mailto:{{ settings.author_email }}">{{ settings.author_email }}</a><br>
-                {% endif %}
-                {% if settings.blog_copyright %}
-                    {{ settings.blog_copyright }}
-                {% endif %}
-            </p>
+            <p>E-mail: <a href="mailto:{{ settings.author_email }}">{{ settings.author_email }}</a></p>
+            <p>{{ settings.blog_copyright }}</p>
         {% endif %}
     </div>
 </footer>
