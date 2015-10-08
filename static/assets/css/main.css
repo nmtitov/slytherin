@@ -84,6 +84,11 @@ footer p {
 #nav {
     /*background: #f04;*/
     /*color: #fff;*/
+    margin: 2em 0;
+}
+
+#nav .header {
+    margin: 2em 0;
 }
 
 #nav a {
@@ -93,7 +98,7 @@ footer p {
 #links_site,
 #links_promo {
     display: inline-block;
-    margin: 1em 2em 0 0;
+    margin: 2em 2em 0 0;
 }
 
 #links_site li,
