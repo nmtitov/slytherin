@@ -106,7 +106,6 @@ STATICFILES_DIRS = (
 
 TEMPLATES = [
     {
-        'TEMPLATE_DEBUG': local_settings.TEMPLATE_DEBUG,
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
@@ -119,6 +118,7 @@ TEMPLATES = [
                 'django.core.context_processors.media',
                 'django.core.context_processors.request'
             ],
+            'debug': local_settings.DEBUG,
         },
     },
 ]
