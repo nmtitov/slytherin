@@ -106,7 +106,7 @@ STATICFILES_DIRS = (
 
 TEMPLATES = [
     {
-        'DEBUG': local_settings.TEMPLATE_DEBUG,
+        'TEMPLATE_DEBUG': local_settings.TEMPLATE_DEBUG,
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
