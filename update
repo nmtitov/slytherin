@@ -2,6 +2,5 @@
 
 git pull
 pip install -r r.txt
-python manage.py syncdb
 python manage.py migrate
 python manage.py collectstatic --noinput
