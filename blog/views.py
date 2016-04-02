@@ -14,7 +14,7 @@ def posts(request):
     return render(request, template_name, context)
 
 
-def post(request, slug: str=None):
+def post(request, slug=None):
     template_name = 'blog/post.html'
     try:
         if request.user.is_staff:
