@@ -23,8 +23,6 @@ SECRET_KEY = 'Jib7hic9erc8Ek9jiC7Yu7alsH3yElg3ef3walt1eG4Nen0reY'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = local_settings.DEBUG
 
-TEMPLATE_DEBUG = local_settings.TEMPLATE_DEBUG
-
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
@@ -108,6 +106,7 @@ STATICFILES_DIRS = (
 
 TEMPLATES = [
     {
+        'DEBUG': local_settings.TEMPLATE_DEBUG,
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
