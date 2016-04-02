@@ -118,7 +118,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.template.context_processors.request'
             ],
-            'debug': local_settings.DEBUG,
+            'debug': DEBUG,
         },
     },
 ]
