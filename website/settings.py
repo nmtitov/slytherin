@@ -114,9 +114,9 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
-                'django.core.context_processors.static',
-                'django.core.context_processors.media',
-                'django.core.context_processors.request'
+                'django.template.context_processors.static',
+                'django.template.context_processors.media',
+                'django.template.context_processors.request'
             ],
             'debug': local_settings.DEBUG,
         },
