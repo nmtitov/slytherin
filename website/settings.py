@@ -18,7 +18,7 @@ from . import local_settings
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'Jib7hic9erc8Ek9jiC7Yu7alsH3yElg3ef3walt1eG4Nen0reY'
+SECRET_KEY = local_settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = local_settings.DEBUG
@@ -26,8 +26,6 @@ DEBUG = local_settings.DEBUG
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '.website.com',   # Allow domain and subdomains
-    '.website.com.',  # Also allow FQDN and subdomains
     '.nmtitov.com',   # Allow domain and subdomains
     '.nmtitov.com.',  # Also allow FQDN and subdomains
 ]
