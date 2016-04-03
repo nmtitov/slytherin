@@ -5,7 +5,7 @@ server {
 	server_name nmtitov.com;
 
 	location / {
-		proxy_pass http://unix:/home/nmtitov/gunicorn.socket;
+		proxy_pass http://unix:/home/nt/nmtitov/gunicorn.socket;
 		include proxy_params;
 	}
 
