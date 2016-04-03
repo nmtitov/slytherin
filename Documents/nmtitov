@@ -9,6 +9,10 @@ server {
 		include proxy_params;
 	}
 
+	location /media {
+		root /home/nt/nmtitov/media;
+	}
+
 	location /static {
 		root /home/nt/nmtitov;
 	}
