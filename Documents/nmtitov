@@ -1,0 +1,15 @@
+server {
+	listen 80 nmtitov;
+	listen [::]:80 nmtitov;
+
+	server_name nmtitov.com;
+
+	location / {
+		proxy_pass http://unix:/home/nmtitov/gunicorn.socket;
+		include proxy_params;
+	}
+
+	location /static {
+		root /home/nt/nmtitov;
+	}
+}
