@@ -129,3 +129,5 @@ local_settings.py
 gunicorn.socket
 gunicorn.log
 gunicorn.pid
+media
+static
