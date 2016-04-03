@@ -126,3 +126,6 @@ crashlytics-build.properties
 
 media/images
 local_settings.py
+gunicorn.socket
+gunicorn.log
+gunicorn.pid
