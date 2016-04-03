@@ -1,0 +1,3 @@
+#!
+ssh -AR 10000:localhost:22 nmtitov 'bash -s' < scripts/pull_reload
+

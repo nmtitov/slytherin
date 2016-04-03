@@ -1,0 +1,8 @@
+cd /home/nt/nmtitov
+source /home/nt/.env/nmtitov/bin/activate
+git checkout master
+git pull
+pip install -r r.txt
+python manage.py migrate
+python manage.py collectstatic --noinput
+sudo /home/nt/bin/restart_nmtitov
