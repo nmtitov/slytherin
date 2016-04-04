@@ -14,13 +14,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='post',
             name='title_after',
-            field=models.CharField(default='', max_length=1024),
+            field=models.CharField(blank=True, default='', max_length=1024),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='post',
             name='title_before',
-            field=models.CharField(default='', max_length=1024),
+            field=models.CharField(blank=True, default='', max_length=1024),
             preserve_default=False,
         ),
     ]
