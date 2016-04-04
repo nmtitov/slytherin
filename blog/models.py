@@ -5,8 +5,6 @@ from bs4 import BeautifulSoup as Soup
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context
 
-IMAGES_DIR = "images"
-
 
 class Post(models.Model):
     published = models.BooleanField(default=False, db_index=True)
@@ -57,7 +55,7 @@ class Post(models.Model):
 
 class Image(models.Model):
     post = models.ForeignKey(Post)
-    file = models.ImageField(upload_to=IMAGES_DIR)
+    file = models.ImageField(upload_to="images")
     retina = models.BooleanField(default=False)
     slug = models.CharField(max_length=32, blank=True, null=True)
     alt = models.CharField(max_length=1024, blank=True, null=True)
