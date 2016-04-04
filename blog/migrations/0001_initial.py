@@ -14,7 +14,11 @@ class Migration(migrations.Migration):
             name='Image',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
-                ('file', models.ImageField(blank=True, upload_to='images', null=True)),
+                ('file', models.ImageField(upload_to='images')),
+                ('caption', models.CharField(blank=True, max_length=1024, null=True)),
+                ('alt', models.CharField(null=True, blank=True, max_length=1024)),
+                ('retina', models.BooleanField(default=False)),
+                ('slug', models.CharField(null=True, blank=True, max_length=32)),
             ],
             options={
             },
@@ -27,15 +31,35 @@ class Migration(migrations.Migration):
                 ('published', models.BooleanField(default=False, db_index=True)),
                 ('publication_date', models.DateTimeField(blank=True, null=True)),
                 ('slug', models.CharField(db_index=True, max_length=1024, unique=True)),
+                ('title_before', models.CharField(blank=True, max_length=1024)),
                 ('title', models.CharField(max_length=1024)),
+                ('title_after', models.CharField(blank=True, max_length=1024)),
+                ('verbose_title', models.CharField(max_length=1024)),
                 ('lead', models.TextField(blank=True, null=True)),
                 ('body', models.TextField(blank=True, null=True)),
+                ('compiled_body', models.TextField(blank=True, null=True, editable=False)),
                 ('release_date', models.DateTimeField(blank=True, null=True)),
                 ('thumbnail_image', models.OneToOneField(to='blog.Image', related_name='thumbnail_image', blank=True, null=True)),
+                ('side', models.TextField(null=True, blank=True)),
+                ('preview', models.BooleanField(default=False, db_index=True)),
             ],
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='image',
+            name='post',
+            field=models.ForeignKey(to='blog.Post'),
+            preserve_default=True,
+        ),
+        migrations.AlterIndexTogether(
+            name='image',
+            index_together=set([('post', 'slug')]),
+        ),
+        migrations.AlterUniqueTogether(
+            name='image',
+            unique_together=set([('post', 'slug')]),
         ),
         migrations.CreateModel(
             name='Settings',
@@ -50,11 +74,5 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'settings',
             },
             bases=(models.Model,),
-        ),
-        migrations.AddField(
-            model_name='image',
-            name='post',
-            field=models.ForeignKey(to='blog.Post'),
-            preserve_default=True,
         ),
     ]
