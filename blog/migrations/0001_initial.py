@@ -41,6 +41,7 @@ class Migration(migrations.Migration):
                 ('release_date', models.DateTimeField(blank=True, null=True)),
                 ('thumbnail_image', models.OneToOneField(to='blog.Image', related_name='thumbnail_image', blank=True, null=True)),
                 ('side', models.TextField(null=True, blank=True)),
+                ('preview', models.BooleanField(default=False, db_index=True)),
             ],
             options={
             },
