@@ -37,6 +37,12 @@ class Migration(migrations.Migration):
             },
             bases=(models.Model,),
         ),
+        migrations.AddField(
+            model_name='image',
+            name='post',
+            field=models.ForeignKey(to='blog.Post'),
+            preserve_default=True,
+        ),
         migrations.CreateModel(
             name='Settings',
             fields=[
@@ -50,11 +56,5 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'settings',
             },
             bases=(models.Model,),
-        ),
-        migrations.AddField(
-            model_name='image',
-            name='post',
-            field=models.ForeignKey(to='blog.Post'),
-            preserve_default=True,
         ),
     ]
