@@ -15,7 +15,10 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
                 ('file', models.ImageField(upload_to='images')),
-                ('caption', models.CharField(blank=True, max_length=1024, null=True))
+                ('caption', models.CharField(blank=True, max_length=1024, null=True)),
+                ('alt', models.CharField(null=True, blank=True, max_length=1024)),
+                ('retina', models.BooleanField(default=False)),
+                ('slug', models.CharField(null=True, blank=True, max_length=32)),
             ],
             options={
             },
@@ -46,6 +49,14 @@ class Migration(migrations.Migration):
             name='post',
             field=models.ForeignKey(to='blog.Post'),
             preserve_default=True,
+        ),
+        migrations.AlterIndexTogether(
+            name='image',
+            index_together=set([('post', 'slug')]),
+        ),
+        migrations.AlterUniqueTogether(
+            name='image',
+            unique_together=set([('post', 'slug')]),
         ),
         migrations.CreateModel(
             name='Settings',
