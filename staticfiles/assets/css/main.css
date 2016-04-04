@@ -206,7 +206,7 @@ footer p {
     margin:auto;
     max-height: 100%;
     max-width: 100%;
-    object-fit: none;
+    object-fit: contain;
 }
 
 .blocks article figcaption {
