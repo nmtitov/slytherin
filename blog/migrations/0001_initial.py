@@ -31,6 +31,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=1024)),
                 ('lead', models.TextField(blank=True, null=True)),
                 ('body', models.TextField(blank=True, null=True)),
+                ('compiled_body', models.TextField(blank=True, null=True, editable=False)),
                 ('release_date', models.DateTimeField(blank=True, null=True)),
                 ('thumbnail_image', models.OneToOneField(to='blog.Image', related_name='thumbnail_image', blank=True, null=True)),
                 ('title_before', models.CharField(blank=True, max_length=1024)),
