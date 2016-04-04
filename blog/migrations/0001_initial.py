@@ -68,6 +68,11 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=32, unique=True)),
             ],
         ),
+        migrations.AddField(
+            model_name='post',
+            name='section',
+            field=models.ForeignKey(on_delete=models.deletion.CASCADE, related_name='posts', to='blog.Section'),
+        ),
         migrations.CreateModel(
             name='Settings',
             fields=[
