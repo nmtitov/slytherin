@@ -40,6 +40,7 @@ class Migration(migrations.Migration):
                 ('compiled_body', models.TextField(blank=True, null=True, editable=False)),
                 ('release_date', models.DateTimeField(blank=True, null=True)),
                 ('thumbnail_image', models.OneToOneField(to='blog.Image', related_name='thumbnail_image', blank=True, null=True)),
+                ('side', models.TextField(null=True, blank=True)),
             ],
             options={
             },
