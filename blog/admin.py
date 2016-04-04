@@ -7,15 +7,11 @@ class ScreenshotInline(admin.StackedInline):
     extra = 4
 
 
+@admin.register(Post)
 class ProjectAdmin(admin.ModelAdmin):
     inlines = [ScreenshotInline]
 
 
-admin.site.register(Post, ProjectAdmin)
-
-
+@admin.register(Settings)
 class SettingsAdmin(admin.ModelAdmin):
     pass
-
-
-admin.site.register(Settings, SettingsAdmin)
