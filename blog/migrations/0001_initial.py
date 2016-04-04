@@ -32,6 +32,7 @@ class Migration(migrations.Migration):
                 ('publication_date', models.DateTimeField(blank=True, null=True)),
                 ('slug', models.CharField(db_index=True, max_length=1024, unique=True)),
                 ('title', models.CharField(max_length=1024)),
+                ('verbose_title', models.CharField(max_length=1024)),
                 ('lead', models.TextField(blank=True, null=True)),
                 ('body', models.TextField(blank=True, null=True)),
                 ('compiled_body', models.TextField(blank=True, null=True, editable=False)),
