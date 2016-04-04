@@ -9,7 +9,7 @@ server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
 
-	server_name nmtitov.com;
+	server_name nmtitov.com www.nmtitov.com;
 
 	ssl_certificate /etc/letsencrypt/live/nmtitov.com/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/nmtitov.com/privkey.pem;
