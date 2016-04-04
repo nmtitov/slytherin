@@ -39,7 +39,7 @@ class Post(models.Model):
             if not self.slug:
                 self.slug = slugify(self.title)
         self.compile()
-        super(Post, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     @property
     def title_before_f(self):
@@ -104,7 +104,7 @@ class Image(models.Model):
             self.slug = n
         if not self.alt:
             self.alt = self.slug
-        super(Image, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return "{post}-{image}".format(post=self.post.slug, image=self.slug)
