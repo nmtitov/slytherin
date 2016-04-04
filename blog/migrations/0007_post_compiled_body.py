@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='post',
             name='compiled_body',
-            field=models.TextField(null=True, blank=True),
+            field=models.TextField(blank=True, null=True, editable=False),
             preserve_default=True,
         ),
     ]

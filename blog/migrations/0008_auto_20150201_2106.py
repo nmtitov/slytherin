@@ -11,12 +11,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='post',
-            name='compiled_body',
-            field=models.TextField(blank=True, null=True, editable=False),
-            preserve_default=True,
-        ),
         migrations.AlterUniqueTogether(
             name='image',
             unique_together=set([('post', 'slug')]),
