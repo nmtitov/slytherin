@@ -6,6 +6,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context
 
 
+class Section(models.Model):
+    title = models.CharField(max_length=32, unique=True)
+
+
 class Post(models.Model):
     published = models.BooleanField(default=False, db_index=True)
     preview = models.BooleanField(default=False, db_index=True)
