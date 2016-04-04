@@ -11,6 +11,7 @@ class Section(models.Model):
 
 
 class Post(models.Model):
+    section = models.ForeignKey(Section, related_name='posts', db_index=True)
     published = models.BooleanField(default=False, db_index=True)
     preview = models.BooleanField(default=False, db_index=True)
     publication_date = models.DateTimeField(blank=True, null=True)

@@ -62,6 +62,13 @@ class Migration(migrations.Migration):
             unique_together=set([('post', 'slug')]),
         ),
         migrations.CreateModel(
+            name='Section',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('title', models.CharField(max_length=32, unique=True)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Settings',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
