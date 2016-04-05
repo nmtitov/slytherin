@@ -12,6 +12,7 @@ DEFAULT_SECTION = 'Production'
 class Section(models.Model):
     DEFAULT_SLUG = DEFAULT_SECTION.lower()
     title = models.CharField(max_length=32, unique=True)
+    verbose_title = models.CharField(max_length=1024)
     slug = models.CharField(max_length=32, unique=True)
 
     def save(self, *args, **kwargs):
