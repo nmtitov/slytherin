@@ -6,9 +6,11 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context
 
 
+DEFAULT_SECTION = 'Production'
+
+
 class Section(models.Model):
-    DEFAULT = 'Production'
-    DEFAULT_SLUG = DEFAULT.lower()
+    DEFAULT_SLUG = DEFAULT_SECTION.lower()
     title = models.CharField(max_length=32, unique=True)
     slug = models.CharField(max_length=32, unique=True)
 
