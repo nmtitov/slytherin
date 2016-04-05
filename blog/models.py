@@ -21,6 +21,9 @@ class Section(models.Model):
     def section_html_id(self):
         return "page_{}".format(self.slug)
 
+    def detail_url_name(self):
+        return "{}_object".format(self.slug)
+
     def __str__(self):
         return self.title
 
