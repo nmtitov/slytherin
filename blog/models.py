@@ -7,6 +7,8 @@ from django.template import Template, Context
 
 
 class Section(models.Model):
+    DEFAULT = 'Production'
+    DEFAULT_SLUG = DEFAULT.lower()
     title = models.CharField(max_length=32, unique=True)
     slug = models.CharField(max_length=32, unique=True)
 
@@ -17,7 +19,7 @@ class Section(models.Model):
         super().save(*args, **kwargs)
 
     def section_html_id(self):
-        return "page_%s" % self.title.lower()
+        return "page_{}".format(self.slug)
 
     def __str__(self):
         return self.title

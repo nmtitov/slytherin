@@ -307,7 +307,8 @@ time {
     z-index: 10;
 }
 
-#page_production #nav_production {
+#page_production #nav_production,
+#page_tutorials #nav_tutorials {
     font-weight: bold;
     text-decoration: none;
     color: #000000;
