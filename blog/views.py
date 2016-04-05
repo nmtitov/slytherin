@@ -18,9 +18,9 @@ def post(request, slug=None):
     template_name = 'blog/post.html'
     try:
         if request.user.is_staff:
-            x = Post.objects.filter(Q(published=True) | Q(preview=True)).get(slug=slug)
+            x = Post.objects.get(slug=slug).filter(Q(published=True) | Q(preview=True))
         else:
-            x = Post.objects.filter(published=True).get(slug=slug)
+            x = Post.objects.get(slug=slug).filter(published=True)
     except Post.DoesNotExist:
         raise Http404
     settings = Settings.shared_instance()
