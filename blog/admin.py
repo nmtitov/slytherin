@@ -1,5 +1,10 @@
 from django.contrib import admin
-from blog.models import Post, Image, Settings
+from blog.models import Section, Post, Image, Settings
+
+
+@admin.register(Section)
+class SectionAdmin(admin.ModelAdmin):
+    list_display = ['title']
 
 
 class ScreenshotInline(admin.StackedInline):
