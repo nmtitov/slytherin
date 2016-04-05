@@ -3,6 +3,7 @@ from django.http import Http404
 from blog.models import Post, Settings
 from django.db.models import Q
 
+
 def posts(request):
     template_name = "blog/posts.html"
     if request.user.is_staff:
