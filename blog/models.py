@@ -8,6 +8,16 @@ from django.template import Template, Context
 
 class Section(models.Model):
     title = models.CharField(max_length=32, unique=True)
+    slug = models.CharField(max_length=32, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            if not self.slug:
+                self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def section_html_id(self):
+        return "page_%s" % self.title.lower()
 
     def __str__(self):
         return self.title
