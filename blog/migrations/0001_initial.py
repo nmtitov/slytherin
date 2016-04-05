@@ -2,6 +2,12 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from blog.models import DEFAULT_SECTION
+
+
+def create_default_section(apps, schema_editor):
+    section_model = apps.get_model("blog", "Section")
+    section_model.objects.create(title=DEFAULT_SECTION)
 
 
 class Migration(migrations.Migration):
@@ -69,6 +75,7 @@ class Migration(migrations.Migration):
                 ('slug', models.CharField(max_length=32, unique=True)),
             ],
         ),
+        migrations.RunPython(create_default_section),
         migrations.AddField(
             model_name='post',
             name='section',
