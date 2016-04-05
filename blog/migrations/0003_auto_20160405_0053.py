@@ -5,6 +5,15 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 
 
+def create_sections(apps, schema_editor):
+    section = apps.get_model("blog", "Section")
+    try:
+        section.objects.create(title="Production")
+        section.objects.create(title="Tutorials")
+    except Exception:
+        pass
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -17,4 +26,5 @@ class Migration(migrations.Migration):
             name='slug',
             field=models.CharField(max_length=32, unique=True),
         ),
+        migrations.RunPython(create_sections),
     ]
