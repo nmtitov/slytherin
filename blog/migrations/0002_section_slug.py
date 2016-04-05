@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -14,7 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='section',
             name='slug',
-            field=models.CharField(default="1", max_length=32),
-            preserve_default=False,
+            field=models.CharField(max_length=32, unique=True),
         ),
     ]
