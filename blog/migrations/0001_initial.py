@@ -71,7 +71,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='post',
             name='section',
-            field=models.ForeignKey(on_delete=models.deletion.CASCADE, related_name='posts', to='blog.Section'),
+            field=models.ForeignKey(on_delete=models.deletion.PROTECT, related_name='posts', to='blog.Section'),
         ),
         migrations.CreateModel(
             name='Settings',

@@ -1,7 +1,7 @@
 {% extends "blog/application.html" %}
 
 {% block title %}Get the App You Want{% endblock %}
-{% block page %}page_production{% endblock %}
+{% block page %}{{ section.section_html_id }}{% endblock %}
 
 {% block content %}
 
@@ -24,7 +24,7 @@
                                         </div>
                                     {% endif %}
                                     <figcaption>
-                                        <h1>{{ post.title_before_f }}<a href="{% url 'post' slug=post.slug %}">{{ post.title }}</a>{{ post.title_after_f }}{% if post.preview %} (Preview){% endif %}</h1>
+                                        <h1>{{ post.title_before_f }}<a href="{% url section.detail_url_name slug=post.slug %}">{{ post.title }}</a>{{ post.title_after_f }}{% if post.preview %} (Preview){% endif %}</h1>
                                     </figcaption>
                                 </figure>
                             </article>
