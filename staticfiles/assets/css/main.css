@@ -91,10 +91,6 @@ footer p {
     margin: 2em 0;
 }
 
-#nav a {
-    /*color: inherit;*/
-}
-
 #links_site,
 #links_promo {
     display: inline-block;
@@ -116,6 +112,11 @@ footer p {
 #links_site a:visited,
 #links_promo a:visited {
     color: #008ACE;
+}
+
+#links_site .active,
+#links_promo .active {
+    color: #000000 !important;
 }
 
 #links_site,
@@ -307,13 +308,12 @@ time {
     z-index: 10;
 }
 
-#page_production #nav_production,
-#page_tutorials #nav_tutorials {
+.nav.active {
     font-weight: bold;
     text-decoration: none;
-    color: #000000;
     pointer-events: none;
     cursor: default;
+    color: #000000;
 }
 
 .clear {
