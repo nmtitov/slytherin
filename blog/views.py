@@ -4,8 +4,7 @@ from blog.models import Section, Post, Settings
 from django.db.models import Q
 
 
-def posts(request, section_slug=None):
-    section_slug = section_slug if section_slug else Section.DEFAULT_SLUG
+def posts(request, section_slug):
     try:
         section = Section.objects.get(slug=section_slug)
     except Section.DoesNotExist:
@@ -20,7 +19,7 @@ def posts(request, section_slug=None):
     return render(request, template_name, context)
 
 
-def post(request, section_slug=None, slug=None):
+def post(request, section_slug, slug):
     section_slug = section_slug if section_slug else Section.DEFAULT_SLUG
     template_name = 'blog/post.html'
     try:
