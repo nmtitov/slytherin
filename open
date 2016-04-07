@@ -1,0 +1,4 @@
+#!/bin/bash
+
+open http://bigmac:8000
+
