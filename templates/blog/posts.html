@@ -1,6 +1,6 @@
 {% extends "blog/application.html" %}
 
-{% block title %}{{ section.verbose_title|title }}{% endblock %}
+{% block title %}{{ section.verbose_title }}{% endblock %}
 {% block page %}{{ section.section_html_id }}{% endblock %}
 
 {% block content %}
@@ -8,7 +8,7 @@
     <section id="sectionBlog">
         <div class="wrapper">
             <header>
-                <h1>{{ section.verbose_title|title }}</h1>
+                <h1>{{ section.verbose_title }}</h1>
             </header>
             <div class="section-content">
                 <ul id="list_posts" class="blocks">
@@ -24,7 +24,7 @@
                                         </div>
                                     {% endif %}
                                     <figcaption>
-                                        <h1>{{ post.title_before_f }}<a href="{% url section.detail_url_name slug=post.slug %}">{{ post.title|title }}</a>{{ post.title_after_f }}{% if post.preview %} (Preview){% endif %}</h1>
+                                        <h1>{{ post.title_before_f }}<a href="{% url section.detail_url_name slug=post.slug %}">{{ post.title }}</a>{{ post.title_after_f }}{% if post.preview %} (Preview){% endif %}</h1>
                                     </figcaption>
                                 </figure>
                             </article>

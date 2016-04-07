@@ -1,15 +1,15 @@
 {% extends "blog/application.html" %}
 
-{% block title %}{{ post.verbose_title|title }}{% endblock %}
+{% block title %}{{ post.verbose_title }}{% endblock %}
 {% block content %}
 
     <section class="section_post">
         <div class="wrapper">
             <header>
                 {% if post.preview %}
-                    <h1>{{ post.verbose_title|title }} (Preview)</h1>
+                    <h1>{{ post.verbose_title }} (Preview)</h1>
                 {% else %}
-                    <h1>{{ post.verbose_title|title }}</h1>
+                    <h1>{{ post.verbose_title }}</h1>
                 {% endif %}
             </header>
             <article class="body">
