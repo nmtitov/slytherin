@@ -38,7 +38,7 @@ class Post(models.Model):
     title_after = models.CharField(max_length=1024, blank=True)
     verbose_title = models.CharField(max_length=1024)
     lead = models.TextField(blank=True, null=True)
-    body = models.TextField(blank=True, null=True)
+    body = models.TextField()
     compiled_body = models.TextField(blank=True, null=True, editable=False)
     side = models.TextField(blank=True, null=True)
     release_date = models.DateTimeField(blank=True, null=True)
