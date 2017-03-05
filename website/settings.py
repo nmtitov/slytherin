@@ -24,6 +24,7 @@ SECRET_KEY = local_settings.SECRET_KEY
 DEBUG = local_settings.DEBUG
 
 ALLOWED_HOSTS = [
+    '192.168.1.200',
     '127.0.0.1',
     'localhost',
     '.nmtitov.com',   # Allow domain and subdomains
@@ -52,7 +53,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'axes.middleware.FailedLoginMiddleware',
 )
 
 ROOT_URLCONF = 'website.urls'
