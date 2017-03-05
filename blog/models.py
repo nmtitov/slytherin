@@ -14,8 +14,16 @@ class Section(models.Model):
     slug = models.CharField(max_length=32, unique=True)
 
     @classmethod
+    def get_root(cls: Type['S']) -> S:
+        return cls.objects.first()
+
+    @classmethod
     def get_by_slug(cls: Type['S'], slug: str) -> S:
         return cls.objects.get(slug=slug)
+
+    @classmethod
+    def list(cls: Type['S']) -> List[S]:
+        return list(cls.objects.all())
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -25,9 +33,6 @@ class Section(models.Model):
 
     def section_html_id(self):
         return "page_{}".format(self.slug)
-
-    def detail_url_name(self):
-        return "{}_object".format(self.slug)
 
     def __str__(self):
         return self.title
