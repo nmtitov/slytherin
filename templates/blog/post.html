@@ -6,11 +6,7 @@
     <section class="section_post">
         <div class="wrapper">
             <header>
-                {% if post.preview %}
-                    <h1>{{ post.verbose_title }} (Preview)</h1>
-                {% else %}
-                    <h1>{{ post.verbose_title }}</h1>
-                {% endif %}
+                <h1>{{ post.verbose_title }}</h1>
             </header>
             <article class="body">
                 {{ post.compiled_body|safe }}
