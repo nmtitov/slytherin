@@ -1,12 +1,12 @@
 {% extends "blog/application.html" %}
 
-{% block title %}{{ post.verbose_title }}{% endblock %}
+{% block title %}{{ post.verbose_title_or_title }}{% endblock %}
 {% block content %}
 
     <section class="section_post">
         <div class="wrapper">
             <header>
-                <h1>{{ post.verbose_title }}</h1>
+                <h1>{{ post.verbose_title_or_title }}</h1>
             </header>
             <article class="body">
                 {{ post.compiled_body|safe }}

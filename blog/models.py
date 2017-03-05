@@ -44,7 +44,7 @@ class Post(models.Model):
     title = models.CharField(max_length=1024)
     slug = models.CharField(max_length=1024, db_index=True, null=False, unique=True)
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
-    verbose_title = models.CharField(max_length=1024)
+    verbose_title = models.CharField(max_length=1024, blank=True, null=True)
     lead = models.TextField(blank=True, null=True)
     body = models.TextField()
     compiled_body = models.TextField(blank=True, null=True, editable=False)
@@ -59,6 +59,9 @@ class Post(models.Model):
     @classmethod
     def get_by_section_and_slug(cls: Type['P'], section: S, slug: str) -> P:
         return Post.objects.get(section=section, slug=slug, draft=False)
+
+    def verbose_title_or_title(self) -> str:
+        return self.verbose_title if self.verbose_title else self.title
 
     def compile(self):
         soup = Soup(self.body)
