@@ -14,20 +14,20 @@
 
                     {% for post in posts %}
 
-                        <li>
-                            <article>
-                                <figure>
-                                    {% if post.thumbnail_image %}
-                                        <div class="container">
-                                            <img src="{{ post.thumbnail_image.url }}" >
-                                        </div>
-                                    {% endif %}
-                                    <figcaption>
-                                        <h1>{{ post.title_before_f }}<a href="{% url 'post' section=section.slug post=post.slug %}">{{ post.title }}</a>{{ post.title_after_f }}</h1>
-                                    </figcaption>
-                                </figure>
-                            </article>
-                        </li>
+                    <li>
+                        <article>
+                            <figure>
+                                {% if post.thumbnail_image %}
+                                    <div class="container">
+                                        <img src="{{ post.thumbnail_image.url }}" >
+                                    </div>
+                                {% endif %}
+                                <figcaption>
+                                    <h1>{{ post.title_before_f }}<a href="{% url 'post' section=section.slug post=post.slug %}">{{ post.title }}</a>{{ post.title_after_f }}</h1>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
 
                     {% endfor %}
                 </ul>
