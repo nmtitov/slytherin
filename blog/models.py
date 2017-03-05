@@ -10,8 +10,8 @@ from typing import List, Type, TypeVar
 S = TypeVar('S', bound='Section')
 class Section(models.Model):
     title = models.CharField(max_length=32, unique=True)
-    verbose_title = models.CharField(max_length=1024)
     slug = models.CharField(max_length=32, unique=True)
+    verbose_title = models.CharField(max_length=1024, blank=True, null=True)
 
     @classmethod
     def get_root(cls: Type['S']) -> S:
@@ -24,6 +24,9 @@ class Section(models.Model):
     @classmethod
     def list(cls: Type['S']) -> List[S]:
         return list(cls.objects.all())
+
+    def verbose_title_or_title(self) -> str:
+        return self.verbose_title if self.verbose_title else self.title
 
     def save(self, *args, **kwargs):
         if not self.id:
