@@ -6,7 +6,7 @@ from django.db.models import Q
 
 def posts(request, section_slug):
     try:
-        section = Section.objects.get(slug=section_slug)
+        section = Section.get_by_slug(section_slug)
         xs = Post.objects.filter(section=section, draft=False).order_by('-publication_date')
         settings = Settings.shared_instance()
         context = dict(section=section, posts=xs, settings=settings)

@@ -4,12 +4,18 @@ from os import path as op
 from bs4 import BeautifulSoup as Soup
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context
+from typing import Type, TypeVar
 
 
+S = TypeVar('S', bound='Section')
 class Section(models.Model):
     title = models.CharField(max_length=32, unique=True)
     verbose_title = models.CharField(max_length=1024)
     slug = models.CharField(max_length=32, unique=True)
+
+    @classmethod
+    def get_by_slug(cls: Type['S'], slug: str) -> S:
+        return cls.objects.get(slug=slug)
 
     def save(self, *args, **kwargs):
         if not self.id:
