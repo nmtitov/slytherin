@@ -23,7 +23,9 @@
                                     </div>
                                 {% endif %}
                                 <figcaption>
-                                    <h1>{{ p.title_before_f }}<a href="{% url 'post' section=section.slug p=p.slug %}">{{ p.title }}</a>{{ p.title_after_f }}</h1>
+                                    <h1>
+                                        <a href="{% url 'post' section=p.section.slug post=p.slug %}">{{ p.title }}</a>
+                                    </h1>
                                 </figcaption>
                             </figure>
                         </article>

@@ -31,11 +31,12 @@ def posts(request, section: str):
 
 def post(request, section, post):
     try:
+        r = Section.get_root()
         sections = Section.list()
         s = Section.get_by_slug(section)
         p = Post.get_by_section_and_slug(section=s, slug=post)
         settings = Settings.get()
-        context = dict(sections=sections, section=s, post=p, settings=settings)
+        context = dict(root=r, sections=sections, section=s, post=p, settings=settings)
         return render(request, 'blog/post.html', context)
     except (Section.DoesNotExist, Post.DoesNotExist):
         raise Http404

@@ -45,9 +45,7 @@ class Post(models.Model):
     publication_date = models.DateTimeField(blank=True, null=True)
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
     slug = models.CharField(max_length=1024, db_index=True, null=False, unique=True)
-    title_before = models.CharField(max_length=1024, blank=True)
     title = models.CharField(max_length=1024)
-    title_after = models.CharField(max_length=1024, blank=True)
     verbose_title = models.CharField(max_length=1024)
     lead = models.TextField(blank=True, null=True)
     body = models.TextField()
@@ -82,16 +80,8 @@ class Post(models.Model):
         self.compile()
         super().save(*args, **kwargs)
 
-    @property
-    def title_before_f(self):
-        return self.title_before + " " if self.title_before else ""
-
-    @property
-    def title_after_f(self):
-        return " " + self.title_after if self.title_after else ""
-
     def __str__(self):
-        return "%s (%s)" % (self.title, self.title_before_f + self.title + self.title_after_f)
+        return self.title
 
 
 class Image(models.Model):
