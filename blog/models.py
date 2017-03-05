@@ -51,7 +51,6 @@ class Post(models.Model):
     body = models.TextField()
     compiled_body = models.TextField(blank=True, null=True, editable=False)
     side = models.TextField(blank=True, null=True)
-    release_date = models.DateTimeField(blank=True, null=True)
 
     @classmethod
     def list_by_section(cls: Type['P'], section: S) -> List[P]:
