@@ -1,4 +1,4 @@
 #!/bin/bash
 
-open http://bigmac:8000
+open http://192.168.1.200:8000
 
