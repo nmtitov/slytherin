@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'axes',
     'blog',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
