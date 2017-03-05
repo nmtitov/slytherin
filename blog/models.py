@@ -41,16 +41,16 @@ class Section(models.Model):
 P = TypeVar('P', bound='Post')
 class Post(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
-    draft = models.BooleanField(default=False, db_index=True)
-    publication_date = models.DateTimeField(blank=True, null=True)
-    thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
-    slug = models.CharField(max_length=1024, db_index=True, null=False, unique=True)
     title = models.CharField(max_length=1024)
+    slug = models.CharField(max_length=1024, db_index=True, null=False, unique=True)
+    thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
     verbose_title = models.CharField(max_length=1024)
     lead = models.TextField(blank=True, null=True)
     body = models.TextField()
     compiled_body = models.TextField(blank=True, null=True, editable=False)
     side = models.TextField(blank=True, null=True)
+    draft = models.BooleanField(default=False, db_index=True)
+    publication_date = models.DateTimeField(blank=True, null=True)
 
     @classmethod
     def list_by_section(cls: Type['P'], section: S) -> List[P]:
