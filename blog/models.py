@@ -4,7 +4,7 @@ from os import path as op
 from bs4 import BeautifulSoup as Soup
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context
-from typing import Type, TypeVar
+from typing import List, Type, TypeVar
 
 
 S = TypeVar('S', bound='Section')
@@ -33,6 +33,7 @@ class Section(models.Model):
         return self.title
 
 
+P = TypeVar('P', bound='Post')
 class Post(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
     draft = models.BooleanField(default=False, db_index=True)
@@ -48,6 +49,14 @@ class Post(models.Model):
     compiled_body = models.TextField(blank=True, null=True, editable=False)
     side = models.TextField(blank=True, null=True)
     release_date = models.DateTimeField(blank=True, null=True)
+
+    @classmethod
+    def list_by_section(cls: Type['P'], section: S) -> List[P]:
+        return list(cls.objects.filter(section=section, draft=False).order_by('-publication_date'))
+
+    @classmethod
+    def get_by_section_and_slug(cls: Type['P'], section: S, slug: str) -> P:
+        return Post.objects.get(section=section, slug=slug, draft=False)
 
     def compile(self):
         soup = Soup(self.body)
@@ -140,20 +149,20 @@ class Image(models.Model):
         index_together = unique_together = ["post", "slug"]
 
 
+St = TypeVar('St', bound='Settings')
 class Settings(models.Model):
     blog_title = models.CharField(max_length=1024)
     blog_copyright = models.CharField(max_length=1024)
     author_email = models.EmailField(max_length=254)
     counter_yandex_metrika = models.TextField(blank=True, null=True)
 
+    @classmethod
+    def get(cls: Type['St']) -> St:
+        return cls.objects.first()
+
     def __str__(self):
         return self.blog_title
 
-    @classmethod
-    def shared_instance(cls):
-        if not cls.objects.exists():
-            cls().save()
-        return cls.objects.first()
 
     class Meta:
         verbose_name_plural = "settings"
