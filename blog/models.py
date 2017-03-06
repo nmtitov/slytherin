@@ -13,7 +13,7 @@ S = TypeVar('S', bound='Section')
 class Section(models.Model):
     title = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(max_length=128, db_index=True, unique=True, editable=False)
-    priority = models.PositiveSmallIntegerField(default=0)
+    priority = models.SmallIntegerField(default=0)
 
     @classmethod
     def get_root(cls: Type['S']) -> S:
