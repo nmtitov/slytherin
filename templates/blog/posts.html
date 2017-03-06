@@ -1,13 +1,13 @@
 {% extends "blog/application.html" %}
 
-{% block title %}{{ section.verbose_title_or_title }}{% endblock %}
+{% block title %}{{ section.title }}{% endblock %}
 
 {% block content %}
 
     <section id="sectionBlog">
         <div class="wrapper">
             <header>
-                <h1>{{ section.verbose_title_or_title }}</h1>
+                <h1>{{ section.title }}</h1>
             </header>
             <div class="section-content">
                 <ul id="list_posts" class="blocks">

@@ -1,17 +1,15 @@
 from django.db import models
-from django.template.defaultfilters import slugify
 from os import path as op
 from bs4 import BeautifulSoup as Soup
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context
 from typing import List, Type, TypeVar
-
+from uuslug import slugify
 
 S = TypeVar('S', bound='Section')
 class Section(models.Model):
     title = models.CharField(max_length=128, unique=True)
-    slug = models.SlugField(max_length=128, db_index=True, unique=True)
-    verbose_title = models.CharField(max_length=1024, blank=True, null=True)
+    slug = models.SlugField(max_length=128, db_index=True, unique=True, editable=False)
 
     @classmethod
     def get_root(cls: Type['S']) -> S:
@@ -25,13 +23,9 @@ class Section(models.Model):
     def list(cls: Type['S']) -> List[S]:
         return list(cls.objects.all())
 
-    def verbose_title_or_title(self) -> str:
-        return self.verbose_title if self.verbose_title else self.title
-
     def save(self, *args, **kwargs):
         if not self.id:
-            if not self.slug:
-                self.slug = slugify(self.title)
+            self.slug = slugify(self.title, max_length=128, word_boundary=True, save_order=True)
         super().save(*args, **kwargs)
 
     def section_html_id(self):
@@ -45,9 +39,8 @@ P = TypeVar('P', bound='Post')
 class Post(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
     title = models.CharField(max_length=256)
-    slug = models.SlugField(max_length=256, db_index=True, unique=True)
+    slug = models.SlugField(max_length=256, db_index=True, unique=True, editable=False)
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
-    verbose_title = models.CharField(max_length=1024, blank=True, null=True)
     lead = models.TextField(blank=True, null=True)
     body = models.TextField()
     compiled_body = models.TextField(blank=True, null=True, editable=False)
@@ -63,9 +56,6 @@ class Post(models.Model):
     def get_by_section_and_slug(cls: Type['P'], section: S, slug: str) -> P:
         return Post.objects.get(section=section, slug=slug, draft=False)
 
-    def verbose_title_or_title(self) -> str:
-        return self.verbose_title if self.verbose_title else self.title
-
     def compile(self):
         soup = Soup(self.body)
         for img in soup.find_all("img"):
@@ -80,8 +70,7 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            if not self.slug:
-                self.slug = slugify(self.title)
+            self.slug = slugify(self.title, max_length=128, word_boundary=True, save_order=True)
         self.compile()
         super().save(*args, **kwargs)
 
@@ -93,8 +82,8 @@ class Image(models.Model):
     post = models.ForeignKey(Post)
     file = models.ImageField(upload_to="images")
     retina = models.BooleanField(default=False)
-    slug = models.CharField(max_length=32, blank=True, null=True)
-    alt = models.CharField(max_length=1024, blank=True, null=True)
+    slug = models.SlugField(max_length=1024, db_index=True, unique=True, editable=False)
+    alt = models.CharField(max_length=1024, blank=True, null=True, editable=False)
     caption = models.CharField(max_length=1024, blank=True, null=True)
     figure_html_template_string = \
         """
@@ -135,11 +124,10 @@ class Image(models.Model):
         return self.figure_html_template.render(context)
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            n, e = op.splitext(op.basename(self.file.name))
-            self.slug = n
-        if not self.alt:
-            self.alt = self.slug
+        if not self.id:
+            name, ext = op.splitext(op.basename(self.file.name))
+            self.slug = slugify(name, max_length=1024, word_boundary=True, save_order=True)
+            self.alt = self.caption
         super().save(*args, **kwargs)
 
     def __str__(self):
