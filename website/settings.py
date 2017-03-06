@@ -157,7 +157,7 @@ CKEDITOR_CONFIGS = {
             ]},
             {'name': 'basicstyles',
              'items': ['Bold', 'Italic', 'Underline', 'RemoveFormat']},
-            # {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', '-', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
             {'name': 'insert',
              'items': ['Image']},
 

@@ -5,7 +5,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context
 from typing import List, Type, TypeVar
 from uuslug import slugify
-from ckeditor.fields import RichTextField
+# from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 S = TypeVar('S', bound='Section')
@@ -44,7 +45,7 @@ class Post(models.Model):
     title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, db_index=True, unique=True, editable=False)
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
-    body = RichTextField()
+    body = RichTextUploadingField()
     # side = RichTextField(blank=True, null=True)
     hidden = models.BooleanField(default=False, db_index=True)
     publication_date = models.DateTimeField(blank=True, null=True)
