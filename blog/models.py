@@ -45,7 +45,7 @@ class Publication(models.Model):
     title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, db_index=True, unique=True, editable=False)
     # thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
-    body = RichTextUploadingField()
+    content = RichTextUploadingField()
     # side = RichTextField(blank=True, null=True)
     hidden = models.BooleanField(default=False, db_index=True)
     created_date = models.DateTimeField(auto_now_add=True, editable=False)
