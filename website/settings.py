@@ -44,6 +44,8 @@ INSTALLED_APPS = (
     'axes',
     'blog',
     'django_extensions',
+    'ckeditor',
+    'ckeditor_uploader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -119,3 +121,10 @@ TEMPLATES = [
 ]
 
 AXES_LOGIN_FAILURE_LIMIT = 10
+
+# CKEditor
+
+# When using default file system storage, images will be uploaded to "uploads" folder in your MEDIA_ROOT and urls will be created against MEDIA_URL (/media/uploads/image.jpg).
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_IMAGE_BACKEND = 'pillow'
