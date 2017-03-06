@@ -3,23 +3,40 @@ from django.http import Http404
 from blog.models import Section, Post, Settings
 
 
-def posts(request, section_slug):
+def root(request):
     try:
-        section = Section.get_by_slug(section_slug)
-        xs = Post.list_by_section(section)
+        r = Section.get_root()
+        sections = Section.list()
+        s = Section.get_root()
+        p = Post.list_by_section(s)
         settings = Settings.get()
-        context = dict(section=section, posts=xs, settings=settings)
+        context = dict(sections=sections, section=s, root=r, posts=p, settings=settings)
         return render(request, 'blog/posts.html', context)
     except Section.DoesNotExist:
         raise Http404
 
 
-def post(request, section_slug, slug):
+def posts(request, section: str):
     try:
-        section = Section.get_by_slug(section_slug)
-        x = Post.get_by_section_and_slug(section=section, slug=slug)
+        r = Section.get_root()
+        sections = Section.list()
+        s = Section.get_by_slug(section)
+        p = Post.list_by_section(s)
         settings = Settings.get()
-        context = dict(section=section, post=x, settings=settings)
+        context = dict(sections=sections, section=s, root=r, posts=p, settings=settings)
+        return render(request, 'blog/posts.html', context)
+    except Section.DoesNotExist:
+        raise Http404
+
+
+def post(request, section, post):
+    try:
+        r = Section.get_root()
+        sections = Section.list()
+        s = Section.get_by_slug(section)
+        p = Post.get_by_section_and_slug(section=s, slug=post)
+        settings = Settings.get()
+        context = dict(root=r, sections=sections, section=s, post=p, settings=settings)
         return render(request, 'blog/post.html', context)
     except (Section.DoesNotExist, Post.DoesNotExist):
         raise Http404

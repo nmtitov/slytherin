@@ -7,14 +7,14 @@ class SectionAdmin(admin.ModelAdmin):
     list_display = ['title']
 
 
-class ScreenshotInline(admin.StackedInline):
+class ImageInline(admin.StackedInline):
     model = Image
     extra = 4
 
 
 @admin.register(Post)
-class ProjectAdmin(admin.ModelAdmin):
-    inlines = [ScreenshotInline]
+class PostAdmin(admin.ModelAdmin):
+    inlines = [ImageInline]
 
 
 @admin.register(Settings)

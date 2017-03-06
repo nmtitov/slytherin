@@ -43,14 +43,12 @@
 <nav id="nav" role="navigation">
     <div class="wrapper">
         <div class="header">
-            <a href="{% url 'production' %}" class="nav {{ section|active_if:"production" }}" ><img src="{% static 'assets/img/logo-nt-colored-height/logo-nt-colored-height@3x.png' %}" width="88" height="36" alt="NT" ></a>
+            <a href="{% url 'root' %}" class="nav {{ section|active_if:root.slug }}" ><img src="{% static 'assets/img/logo-nt-colored-height/logo-nt-colored-height@3x.png' %}" width="88" height="36" alt="NT" ></a>
         </div>
         <ul id="links_site">
-{#            <li><a href="#">Home</a></li>#}
-{#            <li><a href="#">Screencast</a></li>#}
-{#            <li><a href="#">Anatomical Theatre</a></li>#}
-            <li><a href="{% url 'production' %}" class="nav {{ section|active_if:"production" }}" >Production</a></li>
-            <li><a href="{% url 'tutorials' %}" class="nav {{ section|active_if:"tutorials" }}" >Tutorials</a></li>
+            {% for s in sections %}
+            <li><a href="{% url 'posts' section=s.slug %}" class="nav {{ section|active_if:s.slug }}" >{{ s.title }}</a></li>
+            {% endfor %}
         </ul>
     </div>
 </nav>

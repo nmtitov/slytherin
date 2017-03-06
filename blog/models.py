@@ -1,33 +1,35 @@
 from django.db import models
-from django.template.defaultfilters import slugify
 from os import path as op
 from bs4 import BeautifulSoup as Soup
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context
 from typing import List, Type, TypeVar
-
+from uuslug import slugify
 
 S = TypeVar('S', bound='Section')
 class Section(models.Model):
-    title = models.CharField(max_length=32, unique=True)
-    verbose_title = models.CharField(max_length=1024)
-    slug = models.CharField(max_length=32, unique=True)
+    title = models.CharField(max_length=128, unique=True)
+    slug = models.SlugField(max_length=128, db_index=True, unique=True, editable=False)
+
+    @classmethod
+    def get_root(cls: Type['S']) -> S:
+        return cls.objects.first()
 
     @classmethod
     def get_by_slug(cls: Type['S'], slug: str) -> S:
         return cls.objects.get(slug=slug)
 
+    @classmethod
+    def list(cls: Type['S']) -> List[S]:
+        return list(cls.objects.all())
+
     def save(self, *args, **kwargs):
         if not self.id:
-            if not self.slug:
-                self.slug = slugify(self.title)
+            self.slug = slugify(self.title, max_length=128, word_boundary=True, save_order=True)
         super().save(*args, **kwargs)
 
     def section_html_id(self):
         return "page_{}".format(self.slug)
-
-    def detail_url_name(self):
-        return "{}_object".format(self.slug)
 
     def __str__(self):
         return self.title
@@ -36,19 +38,15 @@ class Section(models.Model):
 P = TypeVar('P', bound='Post')
 class Post(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
-    draft = models.BooleanField(default=False, db_index=True)
-    publication_date = models.DateTimeField(blank=True, null=True)
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, db_index=True, unique=True, editable=False)
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
-    slug = models.CharField(max_length=1024, db_index=True, null=False, unique=True)
-    title_before = models.CharField(max_length=1024, blank=True)
-    title = models.CharField(max_length=1024)
-    title_after = models.CharField(max_length=1024, blank=True)
-    verbose_title = models.CharField(max_length=1024)
     lead = models.TextField(blank=True, null=True)
     body = models.TextField()
     compiled_body = models.TextField(blank=True, null=True, editable=False)
     side = models.TextField(blank=True, null=True)
-    release_date = models.DateTimeField(blank=True, null=True)
+    draft = models.BooleanField(default=False, db_index=True)
+    publication_date = models.DateTimeField(blank=True, null=True)
 
     @classmethod
     def list_by_section(cls: Type['P'], section: S) -> List[P]:
@@ -72,46 +70,21 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            if not self.slug:
-                self.slug = slugify(self.title)
+            self.slug = slugify(self.title, max_length=128, word_boundary=True, save_order=True)
         self.compile()
         super().save(*args, **kwargs)
 
-    @property
-    def title_before_f(self):
-        return self.title_before + " " if self.title_before else ""
-
-    @property
-    def title_after_f(self):
-        return " " + self.title_after if self.title_after else ""
-
     def __str__(self):
-        return "%s (%s)" % (self.title, self.title_before_f + self.title + self.title_after_f)
+        return self.title
 
 
 class Image(models.Model):
     post = models.ForeignKey(Post)
     file = models.ImageField(upload_to="images")
     retina = models.BooleanField(default=False)
-    slug = models.CharField(max_length=32, blank=True, null=True)
-    alt = models.CharField(max_length=1024, blank=True, null=True)
+    slug = models.SlugField(max_length=1024, db_index=True, unique=True, editable=False)
+    alt = models.CharField(max_length=1024, blank=True, null=True, editable=False)
     caption = models.CharField(max_length=1024, blank=True, null=True)
-    figure_html_template_string = \
-        """
-        <figure class="post">
-            <div class="container">
-                <img src="{{ image.url }}"
-                    {% if image.alt %} alt="{{ image.alt }}" {% endif %}
-                    {% if image.caption %} title="{{ image.caption }}" {% endif %}
-                    width="{{ image.width }}"
-                    height="{{ image.height }}" />
-            </div>
-            {% if image.caption %}
-            <figcaption>{{ image.caption }}</figcaption>
-            {% endif %}
-        </figure>
-        """
-    figure_html_template = Template(figure_html_template_string)
 
     @property
     def height(self):
@@ -131,15 +104,28 @@ class Image(models.Model):
 
     @property
     def figure_html(self):
-        context = Context({'image': self})
-        return self.figure_html_template.render(context)
+        template = \
+        """
+        <figure class="post">
+            <div class="container">
+                <img src="{{ image.url }}"
+                    {% if image.alt %} alt="{{ image.alt }}" {% endif %}
+                    {% if image.caption %} title="{{ image.caption }}" {% endif %}
+                    width="{{ image.width }}"
+                    height="{{ image.height }}" />
+            </div>
+            {% if image.caption %}
+            <figcaption>{{ image.caption }}</figcaption>
+            {% endif %}
+        </figure>
+        """
+        return Template(template).render(Context({'image': self}))
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            n, e = op.splitext(op.basename(self.file.name))
-            self.slug = n
-        if not self.alt:
-            self.alt = self.slug
+        if not self.id:
+            name, ext = op.splitext(op.basename(self.file.name))
+            self.slug = slugify(name, max_length=1024, word_boundary=True, save_order=True)
+            self.alt = self.caption
         super().save(*args, **kwargs)
 
     def __str__(self):
