@@ -17,7 +17,7 @@ class Section(models.Model):
 
     @classmethod
     def get_root(cls: Type['S']) -> S:
-        return cls.objects.first()
+        return cls.objects.order_by('-priority').first()
 
     @classmethod
     def get_by_slug(cls: Type['S'], slug: str) -> S:

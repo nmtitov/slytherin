@@ -43,7 +43,7 @@
 <nav id="nav">
     <div class="wrapper">
         <div class="header">
-            <a href="{% url 'root' %}" class="nav {{ section|active_if:root.slug }}" ><img src="{% static 'assets/img/logo-nt-colored-height/logo-nt-colored-height@3x.png' %}" width="88" height="36" alt="NT" ></a>
+            <a href="{% url 'root' %}" class="nav" ><img src="{% static 'assets/img/logo-nt-colored-height/logo-nt-colored-height@3x.png' %}" width="88" height="36" alt="NT" ></a>
         </div>
         <ul id="links_site">
             {% for s in sections %}
