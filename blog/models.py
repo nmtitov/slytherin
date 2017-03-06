@@ -45,16 +45,16 @@ class Post(models.Model):
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
     body = RichTextField()
     # side = RichTextField(blank=True, null=True)
-    draft = models.BooleanField(default=False, db_index=True)
+    hidden = models.BooleanField(default=False, db_index=True)
     publication_date = models.DateTimeField(blank=True, null=True)
 
     @classmethod
     def list_by_section(cls: Type['P'], section: S) -> List[P]:
-        return list(cls.objects.filter(section=section, draft=False).order_by('-publication_date'))
+        return list(cls.objects.filter(section=section, hidden=False).order_by('-publication_date'))
 
     @classmethod
     def get_by_section_and_slug(cls: Type['P'], section: S, slug: str) -> P:
-        return Post.objects.get(section=section, slug=slug, draft=False)
+        return Post.objects.get(section=section, slug=slug, hidden=False)
 
     def save(self, *args, **kwargs):
         if not self.id:
