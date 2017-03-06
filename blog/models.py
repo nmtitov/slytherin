@@ -53,7 +53,7 @@ class Publication(models.Model):
 
     @classmethod
     def list_by_section(cls: Type['P'], section: S) -> List[P]:
-        return list(cls.objects.filter(section=section, hidden=False).order_by('-publication_date'))
+        return list(cls.objects.filter(section=section, hidden=False).order_by('-created_date'))
 
     @classmethod
     def get_by_section_and_slug(cls: Type['P'], section: S, slug: str) -> P:
