@@ -44,7 +44,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=256, db_index=True, unique=True, editable=False)
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
     body = RichTextField()
-    side = RichTextField(blank=True, null=True)
+    # side = RichTextField(blank=True, null=True)
     draft = models.BooleanField(default=False, db_index=True)
     publication_date = models.DateTimeField(blank=True, null=True)
 
