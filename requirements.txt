@@ -6,6 +6,7 @@ click==6.7
 curtsies==0.2.11
 Django==1.10.6
 django-axes==2.3.2
+django-ckeditor==5.2.1
 django-extensions==1.7.7
 django-uuslug==1.1.8
 greenlet==0.4.12
