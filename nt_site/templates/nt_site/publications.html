@@ -1,0 +1,40 @@
+{% extends "nt_site/application.html" %}
+
+{% block title %}{{ section.title }}{% endblock %}
+
+{% block content %}
+
+    <section id="sectionBlog">
+        <div class="wrapper">
+            <header>
+                <h1>{{ section.title }}</h1>
+            </header>
+            <div class="section-content">
+                <ul id="list_publications" class="blocks">
+
+                    {% for p in publications %}
+
+                    <li>
+                        <article>
+                            <figure>
+                                {% if p.thumbnail_image %}
+                                    <div class="container">
+                                        <img src="{{ p.thumbnail_image.url }}" >
+                                    </div>
+                                {% endif %}
+                                <figcaption>
+                                    <h1>
+                                        <a href="{% url 'publication' section=p.section.slug publication=p.slug %}">{{ p.title }}</a>
+                                    </h1>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
