@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404
-from blog.models import Section, Post, Settings
+from blog.models import Section, Publication, Settings
 
 
 def root(request):
@@ -8,7 +8,7 @@ def root(request):
         r = Section.get_root()
         sections = Section.list()
         s = Section.get_root()
-        p = Post.list_by_section(s)
+        p = Publication.list_by_section(s)
         settings = Settings.get()
         context = dict(sections=sections, section=s, root=r, posts=p, settings=settings)
         return render(request, 'blog/posts.html', context)
@@ -21,7 +21,7 @@ def posts(request, section: str):
         r = Section.get_root()
         sections = Section.list()
         s = Section.get_by_slug(section)
-        p = Post.list_by_section(s)
+        p = Publication.list_by_section(s)
         settings = Settings.get()
         context = dict(sections=sections, section=s, root=r, posts=p, settings=settings)
         return render(request, 'blog/posts.html', context)
@@ -34,9 +34,9 @@ def post(request, section, post):
         r = Section.get_root()
         sections = Section.list()
         s = Section.get_by_slug(section)
-        p = Post.get_by_section_and_slug(section=s, slug=post)
+        p = Publication.get_by_section_and_slug(section=s, slug=post)
         settings = Settings.get()
         context = dict(root=r, sections=sections, section=s, post=p, settings=settings)
         return render(request, 'blog/post.html', context)
-    except (Section.DoesNotExist, Post.DoesNotExist):
+    except (Section.DoesNotExist, Publication.DoesNotExist):
         raise Http404

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Section, Post, Image, Settings
+from blog.models import Section, Publication, Image, Settings
 
 
 @admin.register(Section)
@@ -12,8 +12,8 @@ class ImageInline(admin.StackedInline):
     extra = 4
 
 
-@admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+@admin.register(Publication)
+class PublicationAdmin(admin.ModelAdmin):
     inlines = [ImageInline]
 
 

@@ -39,8 +39,8 @@ class Section(models.Model):
         return self.title
 
 
-P = TypeVar('P', bound='Post')
-class Post(models.Model):
+P = TypeVar('P', bound='Publication')
+class Publication(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
     title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, db_index=True, unique=True, editable=False)
@@ -56,7 +56,7 @@ class Post(models.Model):
 
     @classmethod
     def get_by_section_and_slug(cls: Type['P'], section: S, slug: str) -> P:
-        return Post.objects.get(section=section, slug=slug, hidden=False)
+        return Publication.objects.get(section=section, slug=slug, hidden=False)
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -68,7 +68,7 @@ class Post(models.Model):
 
 
 class Image(models.Model):
-    post = models.ForeignKey(Post)
+    post = models.ForeignKey(Publication)
     file = models.ImageField(upload_to="images")
     retina = models.BooleanField(default=False)
     slug = models.SlugField(max_length=1024, db_index=True, unique=True, editable=False)
