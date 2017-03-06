@@ -48,7 +48,8 @@ class Publication(models.Model):
     body = RichTextUploadingField()
     # side = RichTextField(blank=True, null=True)
     hidden = models.BooleanField(default=False, db_index=True)
-    publication_date = models.DateTimeField(blank=True, null=True)
+    created_date = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_date = models.DateTimeField(auto_now=True, editable=False)
 
     @classmethod
     def list_by_section(cls: Type['P'], section: S) -> List[P]:

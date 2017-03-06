@@ -15,6 +15,8 @@ class ImageInline(admin.StackedInline):
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
     inlines = [ImageInline]
+    list_display = ('title', 'section', 'created_date', )
+    list_filter = ('section', 'created_date', )
 
 
 @admin.register(Settings)
