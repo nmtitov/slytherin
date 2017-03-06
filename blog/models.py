@@ -85,22 +85,6 @@ class Image(models.Model):
     slug = models.SlugField(max_length=1024, db_index=True, unique=True, editable=False)
     alt = models.CharField(max_length=1024, blank=True, null=True, editable=False)
     caption = models.CharField(max_length=1024, blank=True, null=True)
-    figure_html_template_string = \
-        """
-        <figure class="post">
-            <div class="container">
-                <img src="{{ image.url }}"
-                    {% if image.alt %} alt="{{ image.alt }}" {% endif %}
-                    {% if image.caption %} title="{{ image.caption }}" {% endif %}
-                    width="{{ image.width }}"
-                    height="{{ image.height }}" />
-            </div>
-            {% if image.caption %}
-            <figcaption>{{ image.caption }}</figcaption>
-            {% endif %}
-        </figure>
-        """
-    figure_html_template = Template(figure_html_template_string)
 
     @property
     def height(self):
@@ -120,8 +104,22 @@ class Image(models.Model):
 
     @property
     def figure_html(self):
-        context = Context({'image': self})
-        return self.figure_html_template.render(context)
+        template = \
+        """
+        <figure class="post">
+            <div class="container">
+                <img src="{{ image.url }}"
+                    {% if image.alt %} alt="{{ image.alt }}" {% endif %}
+                    {% if image.caption %} title="{{ image.caption }}" {% endif %}
+                    width="{{ image.width }}"
+                    height="{{ image.height }}" />
+            </div>
+            {% if image.caption %}
+            <figcaption>{{ image.caption }}</figcaption>
+            {% endif %}
+        </figure>
+        """
+        return Template(template).render(Context({'image': self}))
 
     def save(self, *args, **kwargs):
         if not self.id:
