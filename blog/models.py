@@ -44,7 +44,7 @@ class Publication(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
     title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, db_index=True, unique=True, editable=False)
-    thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
+    # thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
     body = RichTextUploadingField()
     # side = RichTextField(blank=True, null=True)
     hidden = models.BooleanField(default=False, db_index=True)
