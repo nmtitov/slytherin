@@ -5,11 +5,14 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context
 from typing import List, Type, TypeVar
 from uuslug import slugify
+from ckeditor.fields import RichTextField
+
 
 S = TypeVar('S', bound='Section')
 class Section(models.Model):
     title = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(max_length=128, db_index=True, unique=True, editable=False)
+    priority = models.PositiveSmallIntegerField(default=0)
 
     @classmethod
     def get_root(cls: Type['S']) -> S:
@@ -21,7 +24,7 @@ class Section(models.Model):
 
     @classmethod
     def list(cls: Type['S']) -> List[S]:
-        return list(cls.objects.all())
+        return list(cls.objects.all().order_by('-priority'))
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -41,37 +44,22 @@ class Post(models.Model):
     title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, db_index=True, unique=True, editable=False)
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
-    lead = models.TextField(blank=True, null=True)
-    body = models.TextField()
-    compiled_body = models.TextField(blank=True, null=True, editable=False)
-    side = models.TextField(blank=True, null=True)
-    draft = models.BooleanField(default=False, db_index=True)
+    body = RichTextField()
+    # side = RichTextField(blank=True, null=True)
+    hidden = models.BooleanField(default=False, db_index=True)
     publication_date = models.DateTimeField(blank=True, null=True)
 
     @classmethod
     def list_by_section(cls: Type['P'], section: S) -> List[P]:
-        return list(cls.objects.filter(section=section, draft=False).order_by('-publication_date'))
+        return list(cls.objects.filter(section=section, hidden=False).order_by('-publication_date'))
 
     @classmethod
     def get_by_section_and_slug(cls: Type['P'], section: S, slug: str) -> P:
-        return Post.objects.get(section=section, slug=slug, draft=False)
-
-    def compile(self):
-        soup = Soup(self.body)
-        for img in soup.find_all("img"):
-            try:
-                data_slug = img['data-slug']
-                im = self.image_set.get(slug=data_slug)
-                figure = Soup(im.figure_html)
-                img.replaceWith(figure)
-            except (KeyError, ObjectDoesNotExist) as e:
-                pass
-        self.compiled_body = str(soup)
+        return Post.objects.get(section=section, slug=slug, hidden=False)
 
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify(self.title, max_length=128, word_boundary=True, save_order=True)
-        self.compile()
         super().save(*args, **kwargs)
 
     def __str__(self):
