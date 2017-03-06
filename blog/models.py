@@ -9,8 +9,8 @@ from typing import List, Type, TypeVar
 
 S = TypeVar('S', bound='Section')
 class Section(models.Model):
-    title = models.CharField(max_length=32, unique=True)
-    slug = models.CharField(max_length=32, unique=True)
+    title = models.CharField(max_length=128, unique=True)
+    slug = models.SlugField(max_length=128, db_index=True, unique=True)
     verbose_title = models.CharField(max_length=1024, blank=True, null=True)
 
     @classmethod
@@ -44,8 +44,8 @@ class Section(models.Model):
 P = TypeVar('P', bound='Post')
 class Post(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
-    title = models.CharField(max_length=1024)
-    slug = models.CharField(max_length=1024, db_index=True, null=False, unique=True)
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, db_index=True, unique=True)
     thumbnail_image = models.OneToOneField('Image', related_name='thumbnail_image', blank=True, null=True, unique=False)
     verbose_title = models.CharField(max_length=1024, blank=True, null=True)
     lead = models.TextField(blank=True, null=True)
