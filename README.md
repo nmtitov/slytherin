@@ -2,5 +2,6 @@
 
 ## Roadmap
 
+Update dependencies
 Add side-bar
 
