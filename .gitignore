@@ -131,3 +131,4 @@ gunicorn.log
 gunicorn.pid
 media
 static
+.mypy_cache/
