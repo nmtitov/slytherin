@@ -16,7 +16,7 @@ admin.site.site_header = 'Sitename'
 admin.site.index_title = 'Sitename administration'
 
 urlpatterns = [
-    path('^admin/', admin.site.urls),
-    path('^ckeditor/', include('ckeditor_uploader.urls')),
-    path('^', include('slytherin.urls')),
+    path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('', include('slytherin.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
