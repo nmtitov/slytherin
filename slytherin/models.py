@@ -69,7 +69,7 @@ class Publication(models.Model):
 
 
 class Image(models.Model):
-    post = models.ForeignKey(Publication)
+    post = models.ForeignKey(Publication, on_delete=models.CASCADE)
     file = models.ImageField(upload_to="images")
     retina = models.BooleanField(default=False)
     slug = models.SlugField(max_length=1024, db_index=True, unique=True, editable=False)
