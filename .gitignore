@@ -123,11 +123,12 @@ crashlytics-build.properties
 
 *.sqlite3
 
-media/images
+media
+static
 local_settings.py
+
 gunicorn.socket
 gunicorn.log
 gunicorn.pid
-media
-static
+
 .mypy_cache/
