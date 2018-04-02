@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('body', models.TextField(blank=True, null=True)),
                 ('compiled_body', models.TextField(blank=True, null=True, editable=False)),
                 ('release_date', models.DateTimeField(blank=True, null=True)),
-                ('thumbnail_image', models.OneToOneField(to='slytherin.Image', related_name='thumbnail_image', blank=True, null=True)),
+                ('thumbnail_image', models.OneToOneField(to='slytherin.Image', on_delete=models.CASCADE, related_name='thumbnail_image', blank=True, null=True)),
                 ('side', models.TextField(null=True, blank=True)),
                 ('preview', models.BooleanField(default=False, db_index=True)),
             ],
@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='image',
             name='post',
-            field=models.ForeignKey(to='slytherin.Post'),
+            field=models.ForeignKey(to='slytherin.Post', on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AlterIndexTogether(
