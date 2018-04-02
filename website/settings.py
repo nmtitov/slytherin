@@ -23,6 +23,15 @@ SECRET_KEY = local_settings.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = local_settings.DEBUG
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'axes_cache': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
 ALLOWED_HOSTS = [
     '192.168.1.200',
     '127.0.0.1',
@@ -121,6 +130,7 @@ TEMPLATES = [
 ]
 
 AXES_LOGIN_FAILURE_LIMIT = 10
+AXES_CACHE = 'axes_cache'
 
 # CKEditor
 
