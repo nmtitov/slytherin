@@ -1,5 +1,5 @@
 """
-Django settings for website project.
+Django settings for hogwarts project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -67,9 +67,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'website.urls'
+ROOT_URLCONF = 'hogwarts.urls'
 
-WSGI_APPLICATION = 'website.wsgi.application'
+WSGI_APPLICATION = 'hogwarts.wsgi.application'
 
 
 # Database
