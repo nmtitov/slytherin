@@ -7,7 +7,7 @@ from django.contrib import admin
 admin.site.site_header = 'Sitename'
 
 # Text to put at the end of each page's <title>.
-admin.site.site_title = 'Sitename nt_site admin'
+admin.site.site_title = 'Sitename slytherin admin'
 
 # Text to put in each page's <h1>.
 admin.site.site_header = 'Sitename'
@@ -18,5 +18,5 @@ admin.site.index_title = 'Sitename administration'
 urlpatterns = [
     url(r'^s/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-    url(r'^', include('nt_site.urls')),
+    url(r'^', include('slytherin.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

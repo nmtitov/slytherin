@@ -1,0 +1,23 @@
+{% extends "slytherin/application.html" %}
+
+{% block title %}{{ publication.title }}{% endblock %}
+{% block content %}
+
+    <section class="section_post">
+        <div class="wrapper">
+            <header>
+                <h1>{{ publication.title }}</h1>
+            </header>
+            <article class="body">
+                {{ publication.content| safe }}
+            </article>
+{#            {% if post.side %}#}
+{#                <aside class="side">#}
+{#                    {{ post.side|safe }}#}
+{#                </aside>#}
+{#            {% endif %}#}
+        </div>
+        <div class="clear"/>
+    </section>
+
+{% endblock %}
