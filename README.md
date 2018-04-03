@@ -2,6 +2,7 @@
 
 ## Roadmap
 
+- Port existing publishing logic from titov.link fork
 - Add side-bar
 - Use bootstrap
 
