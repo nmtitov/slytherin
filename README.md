@@ -1,4 +1,4 @@
-# Slytherin — lean website platform in Python ready for use
+# Slytherin — lean website platform in Python
 
 ## Roadmap
 
