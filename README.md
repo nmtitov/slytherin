@@ -2,7 +2,7 @@
 
 ## Roadmap
 
-- Port existing publishing logic from titov.link fork
+- Port existing publishing logic from titov.app fork
 - Add side-bar
 - Add main page tiles
 
