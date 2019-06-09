@@ -14,7 +14,7 @@
 
 {% if app_list %}
     {% for app in app_list %}
-        {% if app.app_label == "slytherin" or app.app_label == "auth" %}
+        {% if app.app_label == "site" or app.app_label == "auth" %}
         <div class="app-{{ app.app_label }} module">
         <table>
         {% for model in app.models %}

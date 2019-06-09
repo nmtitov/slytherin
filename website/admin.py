@@ -1,5 +1,5 @@
 from django.contrib import admin
-from slytherin.models import Section, Publication, Image, Settings
+from .models import Publication, Section, Settings
 
 
 @admin.register(Section)

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404
-from slytherin.models import Section, Publication, Settings
+from .models import Publication, Section, Settings
 
 
 def root(request):
@@ -11,7 +11,7 @@ def root(request):
         p = Publication.list_by_section(s)
         settings = Settings.get()
         context = dict(sections=sections, section=s, root=r, publications=p, settings=settings)
-        return render(request, 'slytherin/publications.html', context)
+        return render(request, 'site/publications.html', context)
     except Section.DoesNotExist:
         raise Http404
 
@@ -24,7 +24,7 @@ def publications(request, section: str):
         p = Publication.list_by_section(s)
         settings = Settings.get()
         context = dict(sections=sections, section=s, root=r, publications=p, settings=settings)
-        return render(request, 'slytherin/publications.html', context)
+        return render(request, 'site/publications.html', context)
     except Section.DoesNotExist:
         raise Http404
 
@@ -37,6 +37,6 @@ def publication(request, section, publication):
         p = Publication.get_by_section_and_slug(section=s, slug=publication)
         settings = Settings.get()
         context = dict(root=r, sections=sections, section=s, publication=p, settings=settings)
-        return render(request, 'slytherin/publication.html', context)
+        return render(request, 'site/publication.html', context)
     except (Section.DoesNotExist, Publication.DoesNotExist):
         raise Http404

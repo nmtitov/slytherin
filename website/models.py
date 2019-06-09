@@ -10,6 +10,8 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 
 S = TypeVar('S', bound='Section')
+
+
 class Section(models.Model):
     title = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(max_length=128, db_index=True, unique=True, editable=False)
@@ -40,6 +42,8 @@ class Section(models.Model):
 
 
 P = TypeVar('P', bound='Publication')
+
+
 class Publication(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
     title = models.CharField(max_length=256)
@@ -126,6 +130,8 @@ class Image(models.Model):
 
 
 St = TypeVar('St', bound='Settings')
+
+
 class Settings(models.Model):
     blog_title = models.CharField(max_length=1024)
     blog_copyright = models.CharField(max_length=1024)

@@ -52,7 +52,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'axes',
-    'slytherin',
+    'website',
     'django_extensions',
     'ckeditor',
     'ckeditor_uploader',
@@ -70,7 +70,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'public.urls'
 
-WSGI_APPLICATION = 't.wsgi.application'
+WSGI_APPLICATION = 'public.wsgi.application'
 
 
 # Database
@@ -114,16 +114,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-        ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.template.context_processors.static',
-                'django.template.context_processors.media',
-                'django.template.context_processors.request'
+                'django.contrib.messages.context_processors.messages',
             ],
             'debug': DEBUG,
         },

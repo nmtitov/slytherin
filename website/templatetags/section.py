@@ -1,5 +1,5 @@
 from django import template
-from slytherin.models import Publication, Section
+from ..models import Section
 
 register = template.Library()
 
