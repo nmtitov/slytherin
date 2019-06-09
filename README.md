@@ -1,4 +1,6 @@
-# T — lean website platform in Python
+# Public
+
+Easy to use website platform
 
 ## Roadmap
 
