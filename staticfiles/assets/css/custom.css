@@ -9,3 +9,7 @@
 a#logo:link, a#logo:visited {
     color: #000000 !important;
 }
+
+a:link, a:visited {
+    text-decoration: none !important;
+}
