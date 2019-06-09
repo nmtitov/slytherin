@@ -23,6 +23,7 @@ olefile==0.46
 packaging==18.0
 Pillow==5.3.0
 pip-autoremove==0.9.1
+pip-upgrade==0.0.6
 pipdate==0.3.2
 pur==5.2.1
 Pygments==2.3.1
