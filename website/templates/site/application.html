@@ -44,7 +44,7 @@
 <nav id="nav">
     <div class="wrapper">
         <div class="header">
-            <a href="{% url 'root' %}" class="nav" id="logo">TITOV</a>
+            <a href="{% url 'root' %}" class="nav" id="logo">{{ settings.blog_title }}</a>
         </div>
         <ul id="links_site">
             {% for s in sections %}
