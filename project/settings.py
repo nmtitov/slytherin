@@ -86,9 +86,9 @@ MIDDLEWARE = [
     'axes.middleware.AxesMiddleware',
 ]
 
-ROOT_URLCONF = 'public.urls'
+ROOT_URLCONF = 'project.urls'
 
-WSGI_APPLICATION = 'public.wsgi.application'
+WSGI_APPLICATION = 'project.wsgi.application'
 
 
 # Database
