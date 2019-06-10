@@ -42,6 +42,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=256)),
                 ('slug', models.SlugField(editable=False, max_length=256, unique=True)),
                 ('body', ckeditor_uploader.fields.RichTextUploadingField()),
+                ('side', ckeditor_uploader.fields.RichTextUploadingField()),
                 ('hidden', models.BooleanField(db_index=True, default=False)),
                 ('created_date', models.DateTimeField(auto_now_add=True)),
                 ('modified_date', models.DateTimeField(auto_now=True)),
