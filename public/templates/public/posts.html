@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block content %}
-
     <section id="sectionBlog">
         <div class="wrapper">
             <header>
@@ -15,30 +14,28 @@
             </header>
             <div class="section-content">
                 <ul id="list_posts" class="blocks">
-
                     {% for p in posts %}
-
                     <li>
                         <article>
                             <figure>
                                 {% if p.thumbnail_image %}
-                                    <div class="container">
-                                        <img src="{{ p.thumbnail_image.url }}" >
-                                    </div>
+                                <div class="container">
+                                    <img src="{{ p.thumbnail_image.url }}" >
+                                </div>
                                 {% endif %}
                                 <figcaption>
                                     <h1>
-                                        <a href="{% url 'post' section_slug=p.section.slug post_slug=p.slug %}">{{ p.title }}</a>
+                                        <a href="{% url 'post' section_slug=p.section.slug post_slug=p.slug %}">
+                                            {{ p.title }}
+                                        </a>
                                     </h1>
                                 </figcaption>
                             </figure>
                         </article>
                     </li>
-
                     {% endfor %}
                 </ul>
             </div>
         </div>
     </section>
-
 {% endblock %}
