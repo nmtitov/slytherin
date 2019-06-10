@@ -18,9 +18,9 @@
                     <li>
                         <article>
                             <figure>
-                                {% if p.thumbnail_image %}
+                                {% if p.thumbnail %}
                                 <div class="container">
-                                    <img src="{{ p.thumbnail_image.url }}" >
+                                    {{ p.thumbnail | safe }}
                                 </div>
                                 {% endif %}
                                 <figcaption>
