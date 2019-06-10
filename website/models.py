@@ -3,13 +3,9 @@ from os import path as op
 from bs4 import BeautifulSoup as Soup
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context
-from typing import List, Type, TypeVar
 from uuslug import slugify
 # from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
-
-
-S = TypeVar('S', bound='Section')
 
 
 class Section(models.Model):
@@ -18,15 +14,15 @@ class Section(models.Model):
     priority = models.SmallIntegerField(default=0)
 
     @classmethod
-    def get_root(cls: Type['S']) -> S:
+    def get_root(cls):
         return cls.objects.order_by('-priority').first()
 
     @classmethod
-    def get_by_slug(cls: Type['S'], slug: str) -> S:
+    def get_by_slug(cls, slug):
         return cls.objects.get(slug=slug)
 
     @classmethod
-    def list(cls: Type['S']) -> List[S]:
+    def list(cls):
         return list(cls.objects.all().order_by('-priority'))
 
     def save(self, *args, **kwargs):
@@ -41,9 +37,6 @@ class Section(models.Model):
         return self.title
 
 
-P = TypeVar('P', bound='Publication')
-
-
 class Publication(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
     title = models.CharField(max_length=256)
@@ -56,11 +49,11 @@ class Publication(models.Model):
     modified_date = models.DateTimeField(auto_now=True, editable=False)
 
     @classmethod
-    def list_by_section(cls: Type['P'], section: S) -> List[P]:
+    def list_by_section(cls, section):
         return list(cls.objects.filter(section=section, hidden=False).order_by('-created_date'))
 
     @classmethod
-    def get_by_section_and_slug(cls: Type['P'], section: S, slug: str) -> P:
+    def get_by_section_and_slug(cls, section, slug: str):
         return Publication.objects.get(section=section, slug=slug, hidden=False)
 
     def save(self, *args, **kwargs):
@@ -129,9 +122,6 @@ class Image(models.Model):
         index_together = unique_together = ["post", "slug"]
 
 
-St = TypeVar('St', bound='Settings')
-
-
 class Settings(models.Model):
     blog_title = models.CharField(max_length=1024)
     blog_copyright = models.CharField(max_length=1024)
@@ -139,12 +129,11 @@ class Settings(models.Model):
     counter_yandex_metrika = models.TextField(blank=True, null=True)
 
     @classmethod
-    def get(cls: Type['St']) -> St:
+    def get(cls):
         return cls.objects.first()
 
     def __str__(self):
         return self.blog_title
-
 
     class Meta:
         verbose_name_plural = "settings"
