@@ -61,12 +61,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='publication',
             name='section',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='posts', to='website.Section'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='posts', to='public.Section'),
         ),
         migrations.AddField(
             model_name='image',
             name='post',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='website.Publication'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.Publication'),
         ),
         migrations.AlterUniqueTogether(
             name='image',
