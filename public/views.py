@@ -29,12 +29,12 @@ def posts(request, section: str):
         raise Http404
 
 
-def post(request, section, publication):
+def post(request, section_slug, post_slug):
     try:
         r = Section.get_root()
         sections = Section.list()
-        s = Section.get_by_slug(section)
-        p = Post.get_by_section_and_slug(section=s, slug=publication)
+        s = Section.get_by_slug(section_slug)
+        p = Post.get_by_section_and_slug(section=s, slug=post_slug)
         settings = Settings.get()
         context = dict(root=r, sections=sections, section=s, post=p, settings=settings)
         return render(request, 'public/post.html', context)
