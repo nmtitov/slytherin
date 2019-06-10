@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=256)),
                 ('slug', models.SlugField(editable=False, max_length=256, unique=True)),
-                ('content', ckeditor_uploader.fields.RichTextUploadingField()),
+                ('body', ckeditor_uploader.fields.RichTextUploadingField()),
                 ('hidden', models.BooleanField(db_index=True, default=False)),
                 ('created_date', models.DateTimeField(auto_now_add=True)),
                 ('modified_date', models.DateTimeField(auto_now=True)),
