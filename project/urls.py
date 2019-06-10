@@ -2,18 +2,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from project import local_settings
 
 
-admin.site.site_header = 'Sitename'
-
-# Text to put at the end of each page's <title>.
-admin.site.site_title = 'Sitename site admin'
-
-# Text to put in each page's <h1>.
-admin.site.site_header = 'Sitename'
-
-# Text to put at the top of the admin index page.
-admin.site.index_title = 'Sitename administration'
+# Admin site configuration
+admin.site.site_title = local_settings.admin_site_site_title
+admin.site.site_header = local_settings.admin_site_site_header
+admin.site.index_title = local_settings.admin_site_index_title
 
 urlpatterns = [
     path('admin/', admin.site.urls),
