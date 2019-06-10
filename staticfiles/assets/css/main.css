@@ -311,8 +311,8 @@ time {
 .nav.active {
     font-weight: bold;
     text-decoration: none;
-    pointer-events: none;
-    cursor: default;
+    /* pointer-events: none; */
+    /* cursor: default; */
     color: #000000;
 }
 
