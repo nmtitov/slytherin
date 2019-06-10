@@ -9,10 +9,10 @@ server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
 
-	server_name nmtitov.com www.nmtitov.com;
+	server_name titov.dev www.titov.dev;
 
-	ssl_certificate /etc/letsencrypt/live/nmtitov.com/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/nmtitov.com/privkey.pem;
+	ssl_certificate /etc/letsencrypt/live/titov.dev/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/titov.dev/privkey.pem;
 	ssl_session_timeout 1d;
 	ssl_session_cache shared:SSL:10m;
 	ssl_session_tickets off;
