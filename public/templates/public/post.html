@@ -1,15 +1,15 @@
-{% extends "site/application.html" %}
+{% extends "public/application.html" %}
 
-{% block title %}{{ publication.title }}{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
 {% block content %}
 
     <section class="section_post">
         <div class="wrapper">
             <header>
-                <h1>{{ publication.title }}</h1>
+                <h1>{{ post.title }}</h1>
             </header>
             <article class="body">
-                {{ publication.content| safe }}
+                {{ post.content| safe }}
             </article>
 {#            {% if post.side %}#}
 {#                <aside class="side">#}

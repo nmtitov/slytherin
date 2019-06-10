@@ -4,7 +4,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from .secton import Section
 
 
-class Publication(models.Model):
+class Post(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
     title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, db_index=True, unique=True, editable=False)
@@ -21,7 +21,7 @@ class Publication(models.Model):
 
     @classmethod
     def get_by_section_and_slug(cls, section, slug: str):
-        return Publication.objects.get(section=section, slug=slug, hidden=False)
+        return Post.objects.get(section=section, slug=slug, hidden=False)
 
     def save(self, *args, **kwargs):
         if not self.id:

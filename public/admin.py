@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Publication, Section, Settings
+from .models import Post, Section, Settings
 
 
 @admin.register(Section)
@@ -12,7 +12,7 @@ class SectionAdmin(admin.ModelAdmin):
 #     extra = 4
 
 
-@admin.register(Publication)
+@admin.register(Post)
 class PublicationAdmin(admin.ModelAdmin):
     # inlines = [ImageInline]
     list_display = ('title', 'section', 'created_date', )

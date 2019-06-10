@@ -2,11 +2,11 @@ from django.db import models
 from os import path as op
 from django.template import Template, Context
 from uuslug import slugify
-from .publication import Publication
+from .post import Post
 
 
 class Image(models.Model):
-    post = models.ForeignKey(Publication, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     file = models.ImageField(upload_to="images")
     retina = models.BooleanField(default=False)
     slug = models.SlugField(max_length=1024, db_index=True, unique=True, editable=False)

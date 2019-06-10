@@ -1,6 +1,6 @@
 from .image import Image
-from .publication import Publication
+from .post import Post
 from .secton import Section
 from .settings import Settings
 
-__all__ = ["Image", "Publication", "Section", "Settings"]
+__all__ = ["Image", "Post", "Section", "Settings"]

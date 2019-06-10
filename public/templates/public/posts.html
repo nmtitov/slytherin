@@ -1,4 +1,4 @@
-{% extends "site/application.html" %}
+{% extends "public/application.html" %}
 
 {% block title %}{{ section.title }}{% endblock %}
 
@@ -10,7 +10,7 @@
                 <h1>{{ section.title }}</h1>
             </header>
             <div class="section-content">
-                <ul id="list_publications" class="blocks">
+                <ul id="list_posts" class="blocks">
 
                     {% for p in publications %}
 
@@ -24,7 +24,7 @@
                                 {% endif %}
                                 <figcaption>
                                     <h1>
-                                        <a href="{% url 'publication' section=p.section.slug publication=p.slug %}">{{ p.title }}</a>
+                                        <a href="{% url 'post' section=p.section.slug post=p.slug %}">{{ p.title }}</a>
                                     </h1>
                                 </figcaption>
                             </figure>
