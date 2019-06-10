@@ -5,7 +5,12 @@ from uuslug import slugify
 class Section(models.Model):
     title = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(max_length=128, db_index=True, unique=True, editable=False)
+    verbose_title = models.CharField(max_length=1024)
     priority = models.SmallIntegerField(default=0)
+
+    @property
+    def display_title(self):
+        return self.verbose_title if self.verbose_title else self.title
 
     @classmethod
     def get_root(cls):

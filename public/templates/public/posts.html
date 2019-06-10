@@ -1,13 +1,17 @@
 {% extends "public/application.html" %}
 
-{% block title %}{{ section.title }}{% endblock %}
+{% block title %}
+{{ section.display_title }}
+{% endblock %}
 
 {% block content %}
 
     <section id="sectionBlog">
         <div class="wrapper">
             <header>
-                <h1>{{ section.title }}</h1>
+                <h1>
+                    {{ section.display_title }}
+                </h1>
             </header>
             <div class="section-content">
                 <ul id="list_posts" class="blocks">
