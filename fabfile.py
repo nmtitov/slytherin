@@ -5,7 +5,7 @@ from project import local_settings
 
 @task(aliases=["d"])
 def deploy(c):
-    conn = Connection(local_settings.FABRIC_HOST)
+    conn = Connection(local_settings.FABRIC_HOST, port=local_settings.FABRIC_PORT)
     conn.run("cd ~ && "
              f"source {local_settings.FABRIC_VIRTUAL_ENV}/bin/activate && "
              f"cd {local_settings.FABRIC_WD} && "
