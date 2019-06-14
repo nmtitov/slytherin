@@ -1,7 +1,7 @@
-bind = "unix:/home/nt/titov/gunicorn.socket"
+bind = "unix:/tmp/titov.sock"
 workers = 2
-logfile = "/home/nt/titov/gunicorn.log"
+logfile = "/var/log/titov/gunicorn.log"
 loglevel = "info"
-proc_name = "stats"
-pidfile = "/home/nt/titov/gunicorn.pid"
+proc_name = "inv"
+pidfile = "/var/run/titov/gunicorn.pid"
 pythonpath = "/home/nt/titov/"

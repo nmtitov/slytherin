@@ -132,3 +132,4 @@ gunicorn.log
 gunicorn.pid
 
 .mypy_cache/
+gunicorn.conf.py
