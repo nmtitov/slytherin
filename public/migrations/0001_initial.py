@@ -51,20 +51,4 @@ class Migration(migrations.Migration):
                 ('section', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='posts', to='public.Section')),
             ],
         ),
-        migrations.CreateModel(
-            name='Image',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file', models.ImageField(upload_to='images')),
-                ('retina', models.BooleanField(default=False)),
-                ('slug', models.SlugField(editable=False, max_length=1024, unique=True)),
-                ('alt', models.CharField(blank=True, editable=False, max_length=1024, null=True)),
-                ('caption', models.CharField(blank=True, max_length=1024, null=True)),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.Post')),
-            ],
-            options={
-                'unique_together': {('post', 'slug')},
-                'index_together': {('post', 'slug')},
-            },
-        ),
     ]
