@@ -1,0 +1,12 @@
+h1, h2, h3, h4, h5, h6, #user-tools, div.breadcrumbs a {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "helvetica neue", "helvetica", "arial", sans-serif;
+    /* font-weight: 400; */
+}
+
+#branding h1 {
+    /* font-weight: 500; */
+}
+
+body, td, th, input, textarea, select, .form-row p, form .button {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "helvetica neue", "helvetica", "arial", sans-serif;
+}

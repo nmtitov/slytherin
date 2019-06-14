@@ -123,8 +123,6 @@ crashlytics-build.properties
 
 *.sqlite3
 
-media
-static
 local_settings.py
 
 gunicorn.socket
