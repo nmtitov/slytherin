@@ -14,6 +14,7 @@ class Post(models.Model):
     hidden = models.BooleanField(default=False, db_index=True)
     created_date = models.DateTimeField(auto_now_add=True, editable=False)
     modified_date = models.DateTimeField(auto_now=True, editable=False)
+    release_date = models.DateTimeField(blank=True, null=True)
 
     @classmethod
     def list_by_section(cls, section):

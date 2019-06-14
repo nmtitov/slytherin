@@ -48,6 +48,7 @@ class Migration(migrations.Migration):
                 ('hidden', models.BooleanField(db_index=True, default=False)),
                 ('created_date', models.DateTimeField(auto_now_add=True)),
                 ('modified_date', models.DateTimeField(auto_now=True)),
+                ('release_date', models.DateTimeField(blank=True, null=True)),
                 ('section', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='posts', to='public.Section')),
             ],
         ),
