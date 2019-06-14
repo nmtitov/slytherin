@@ -24,7 +24,7 @@ class Post(models.Model):
         return Post.objects.get(section=section, slug=slug, hidden=False)
 
     def save(self, *args, **kwargs):
-        if not self.id:
+        if not self.id and not self.slug:
             self.slug = slugify(self.title, max_length=128, word_boundary=True, save_order=True)
         super().save(*args, **kwargs)
 
