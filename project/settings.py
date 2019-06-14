@@ -118,8 +118,8 @@ STATICFILES_DIRS = (
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = "/opt/public/static"
-MEDIA_ROOT = "/opt/public/media"
+STATIC_ROOT = local_settings.STATIC_ROOT
+MEDIA_ROOT = local_settings.MEDIA_ROOT
 
 
 TEMPLATES = [
