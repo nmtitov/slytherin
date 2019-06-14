@@ -11,7 +11,7 @@ Django==2.2.2
 django-appconf==1.0.3
 django-axes==5.0.6
 django-ckeditor==5.7.1
-django-extensions==2.1.7
+django-extensions==2.1.9
 django-ipware==2.1.0
 django-js-asset==1.2.2
 django-uuslug==1.1.8
