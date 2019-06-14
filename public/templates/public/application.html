@@ -47,7 +47,7 @@
         </div>
         <ul id="links_site">
             {% for s in sections %}
-            <li><a href="{% url 'posts' section=s.slug %}" class="nav {{ section | active_if:s.slug }}" >{{ s.title }}</a></li>
+            <li><a href="{% url 'posts' section=s.slug %}" class="nav {% if section.id == s.id %} active {% endif %}" >{{ s.title }}</a></li>
             {% endfor %}
         </ul>
     </div>
