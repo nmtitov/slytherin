@@ -23,14 +23,7 @@ SECRET_KEY = local_settings.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = local_settings.DEBUG
 
-ALLOWED_HOSTS = [
-    '192.168.1.100',
-    '192.168.1.200',
-    '127.0.0.1',
-    'localhost',
-    '.nmtitov.com',   # Allow domain and subdomains
-    '.nmtitov.com.',  # Also allow FQDN and subdomains
-]
+ALLOWED_HOSTS = local_settings.ALLOWED_HOSTS
 
 
 # Application definition
