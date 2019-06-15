@@ -3,7 +3,7 @@ from django.http import Http404
 from .models import Post, Section, Settings
 
 
-def root(request):
+def home(request):
     try:
         context = {
             "sections": Section.list(),
@@ -30,13 +30,13 @@ def posts(request, section: str):
         raise Http404
 
 
-def post(request, section_slug, post_slug):
+def post(request, section, post):
     try:
-        s = Section.get_by_slug(section_slug)
+        s = Section.get_by_slug(section)
         context = {
             "sections": Section.list(),
             "section": s,
-            "post": Post.get_by_section_and_slug(section=s, slug=post_slug),
+            "post": Post.get_by_section_and_slug(section=s, slug=post),
             "settings": Settings.get(),
         }
         return render(request, 'public/post.html', context)

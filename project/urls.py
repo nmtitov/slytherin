@@ -11,7 +11,7 @@ admin.site.site_header = local_settings.admin_site_site_header
 admin.site.index_title = local_settings.admin_site_index_title
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('django.contrib.auth.urls')),
-    path('', include('public.urls')),
+    path("admin/", admin.site.urls),
+    path("auth/", include("django.contrib.auth.urls")),
+    path("", include("public.urls", namespace="public")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

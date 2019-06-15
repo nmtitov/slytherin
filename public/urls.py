@@ -1,8 +1,11 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
+
+app_name = 'public'
+
 urlpatterns = [
-    url(r'^$', views.root, name='root'),
-    url(r'^(?P<section>[A-Za-z0-9_-]+)/$', views.posts, name='posts'),
-    url(r'^(?P<section_slug>[A-Za-z0-9_-]+)/(?P<post_slug>[A-Za-z0-9_-]+)/$', views.post, name='post'),
+    path("", views.home, name="home"),
+    path("<slug:section>/", views.posts, name="posts"),
+    path("<slug:section>/<slug:post>/", views.post, name="post"),
 ]
