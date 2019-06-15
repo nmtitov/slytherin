@@ -29,8 +29,5 @@ class Section(models.Model):
             self.slug = slugify(self.title, max_length=128, word_boundary=True, save_order=True)
         super().save(*args, **kwargs)
 
-    def section_html_id(self):
-        return "page_{}".format(self.slug)
-
     def __str__(self):
         return self.title
