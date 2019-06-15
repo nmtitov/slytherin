@@ -13,7 +13,7 @@ class Section(models.Model):
         return self.verbose_title if self.verbose_title else self.title
 
     @classmethod
-    def get_root(cls):
+    def get_home(cls):
         return cls.objects.order_by('-priority').first()
 
     @classmethod
