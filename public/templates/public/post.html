@@ -1,12 +1,12 @@
 {% extends "public/application.html" %}
 
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{{ post.internal_title }}{% endblock %}
 {% block content %}
 
     <section class="section_post">
         <div class="wrapper">
             <header>
-                <h1>{{ post.title }}</h1>
+                <h1>{{ post.internal_title }}</h1>
             </header>
             <article class="body">
                 {{ post.body | safe }}

@@ -6,6 +6,7 @@ from .secton import Section
 class Post(models.Model):
     section = models.ForeignKey(Section, related_name='posts', db_index=True, on_delete=models.PROTECT)
     title = models.CharField(max_length=256)
+    internal_title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, db_index=True, unique=True)
     thumbnail = models.TextField(blank=True)
     body = models.TextField(blank=True)
