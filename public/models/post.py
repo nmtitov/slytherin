@@ -10,7 +10,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=256, db_index=True, unique=True)
     thumbnail = models.TextField(blank=True)
     body = models.TextField(blank=True)
-    side = models.TextField(blank=True)
+    sidebar = models.TextField(blank=True)
     hidden = models.BooleanField(default=False, db_index=True)
     created_date = models.DateTimeField(auto_now_add=True, editable=False)
     modified_date = models.DateTimeField(auto_now=True, editable=False)
