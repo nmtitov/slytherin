@@ -18,7 +18,7 @@ class Post(models.Model):
 
     @classmethod
     def list_by_section(cls, section):
-        return list(cls.objects.filter(section=section, hidden=False).order_by('-created_date'))
+        return list(cls.objects.filter(section=section, hidden=False).order_by('-release_date'))
 
     @classmethod
     def get_by_section_and_slug(cls, section, slug: str):
