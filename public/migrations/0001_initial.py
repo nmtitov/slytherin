@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('slug', models.SlugField(max_length=256, unique=True)),
                 ('thumbnail', models.TextField(blank=True)),
                 ('body', models.TextField(blank=True)),
-                ('side', models.TextField(blank=True)),
+                ('sidebar', models.TextField(blank=True)),
                 ('hidden', models.BooleanField(db_index=True, default=False)),
                 ('created_date', models.DateTimeField(auto_now_add=True)),
                 ('modified_date', models.DateTimeField(auto_now=True)),
