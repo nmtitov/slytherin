@@ -326,12 +326,12 @@ time {
     float: left;
 }
 
-.section_post .side {
+.section_post .sidebar {
     width: 23%;
     float: left;
 }
 
-.section_post .side h2, b {
+.section_post .sidebar h2, b {
     font-weight: bold;
 }
 
