@@ -13,20 +13,22 @@
                 </h1>
             </header>
             <div class="section-content">
+                {% for year, posts in posts_dict.items %}
+                <h2>{{ year }}</h2>
                 <ul id="list_posts" class="blocks">
-                    {% for p in posts %}
+                    {% for post in posts %}
                     <li>
                         <article>
                             <figure>
-                                {% if p.thumbnail %}
+                                {% if post.thumbnail %}
                                 <div class="container">
-                                    {{ p.thumbnail | safe }}
+                                    {{ post.thumbnail | safe }}
                                 </div>
                                 {% endif %}
                                 <figcaption>
                                     <h1>
-                                        <a href="{% url 'public:post' section=p.section.slug post=p.slug %}">
-                                            {{ p.title }}
+                                        <a href="{% url 'public:post' section=post.section.slug post=post.slug %}">
+                                            {{ post.title }}
                                         </a>
                                     </h1>
                                 </figcaption>
@@ -35,6 +37,7 @@
                     </li>
                     {% endfor %}
                 </ul>
+                {% endfor %}
             </div>
         </div>
     </section>
