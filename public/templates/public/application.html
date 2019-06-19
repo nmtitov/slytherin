@@ -56,12 +56,8 @@
 </main>
 <footer id="footer">
     <div class="wrapper">
-        {% if settings %}
-            <p>E-mail: <a href="mailto:{{ settings.author_email }}">{{ settings.author_email }}</a></p>
-            <p>{{ settings.blog_copyright }}</p>
-        {% endif %}
+        {{ settings.footer | safe }}
     </div>
 </footer>
-{{ settings.counter_yandex_metrika | safe }}
 </body>
 </html>

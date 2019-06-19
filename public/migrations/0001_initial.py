@@ -27,9 +27,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('blog_title', models.CharField(max_length=1024)),
-                ('blog_copyright', models.CharField(max_length=1024)),
-                ('author_email', models.EmailField(max_length=254)),
-                ('counter_yandex_metrika', models.TextField(blank=True, null=True)),
+                ('footer', models.TextField(blank=True, null=True)),
             ],
             options={
                 'verbose_name_plural': 'settings',
