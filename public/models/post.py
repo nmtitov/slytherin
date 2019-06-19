@@ -1,3 +1,4 @@
+from collections import defaultdict
 from django.db import models
 from uuslug import slugify
 from .secton import Section
@@ -19,6 +20,19 @@ class Post(models.Model):
     @classmethod
     def list_by_section(cls, section):
         return list(cls.objects.filter(section=section, hidden=False).order_by('-release_date'))
+
+    @classmethod
+    def list_by_section_group_by_year(cls, section):
+        # Get model objects
+        posts = Post.list_by_section(section=section)
+
+        # Group posts by year
+        default_dict = defaultdict(list)
+        for post in posts:
+            key = post.release_date.year if post.release_date.year else 0
+            default_dict[key].append(post)
+
+        return dict(default_dict)
 
     @classmethod
     def get_by_section_and_slug(cls, section, slug: str):
