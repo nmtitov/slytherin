@@ -19,7 +19,7 @@ class Post(models.Model):
 
     @classmethod
     def list_by_section(cls, section):
-        return list(cls.objects.filter(section=section, hidden=False).order_by('-release_date'))
+        return list(cls.objects.filter(section=section, hidden=False).order_by('-release_date', '-created_date'))
 
     @classmethod
     def list_by_section_group_by_year(cls, section):
