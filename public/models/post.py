@@ -29,7 +29,7 @@ class Post(models.Model):
         # Group posts by year
         default_dict = defaultdict(list)
         for post in posts:
-            key = post.release_date.year if post.release_date else 0
+            key = post.release_date.year if post.release_date else None
             default_dict[key].append(post)
 
         return dict(default_dict)
