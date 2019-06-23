@@ -15,8 +15,8 @@ class SectionAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PublicationAdmin(admin.ModelAdmin):
     # inlines = [ImageInline]
-    list_display = ('title', 'section', 'created_date', )
-    list_filter = ('section', 'created_date', )
+    list_display = ('title', 'section', 'created_date', 'release_date', )
+    list_filter = ('section', 'created_date', 'release_date', )
 
 
 @admin.register(Settings)
