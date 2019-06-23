@@ -1,7 +1,17 @@
 from collections import defaultdict
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from uuslug import slugify
 from .secton import Section
+
+
+def validate_html(value):
+    if False:
+        raise ValidationError(
+            _('%(value)s is not a valid HTML'),
+            params={'value': value},
+        )
 
 
 class Post(models.Model):
@@ -9,9 +19,9 @@ class Post(models.Model):
     title = models.CharField(max_length=256)
     internal_title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, db_index=True, unique=True)
-    thumbnail = models.TextField(blank=True)
-    body = models.TextField(blank=True)
-    sidebar = models.TextField(blank=True)
+    thumbnail = models.TextField(blank=True, validators=[validate_html])
+    body = models.TextField(blank=True, validators=[validate_html])
+    sidebar = models.TextField(blank=True, validators=[validate_html])
     hidden = models.BooleanField(default=False, db_index=True)
     created_date = models.DateTimeField(auto_now_add=True, editable=False)
     modified_date = models.DateTimeField(auto_now=True, editable=False)
