@@ -1,7 +1,17 @@
 from collections import defaultdict
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from uuslug import slugify
 from .secton import Section
+
+
+def validate_html(value):
+    if False:
+        raise ValidationError(
+            _('%(value)s is not a valid HTML'),
+            params={'value': value},
+        )
 
 
 class Post(models.Model):
@@ -9,9 +19,9 @@ class Post(models.Model):
     title = models.CharField(max_length=256)
     internal_title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, db_index=True, unique=True)
-    thumbnail = models.TextField(blank=True)
-    body = models.TextField(blank=True)
-    sidebar = models.TextField(blank=True)
+    thumbnail = models.TextField(blank=True, validators=[validate_html])
+    body = models.TextField(blank=True, validators=[validate_html])
+    sidebar = models.TextField(blank=True, validators=[validate_html])
     hidden = models.BooleanField(default=False, db_index=True)
     created_date = models.DateTimeField(auto_now_add=True, editable=False)
     modified_date = models.DateTimeField(auto_now=True, editable=False)
@@ -19,7 +29,7 @@ class Post(models.Model):
 
     @classmethod
     def list_by_section(cls, section):
-        return list(cls.objects.filter(section=section, hidden=False).order_by('-release_date'))
+        return list(cls.objects.filter(section=section, hidden=False).order_by('-release_date', '-created_date'))
 
     @classmethod
     def list_by_section_group_by_year(cls, section):
@@ -29,7 +39,7 @@ class Post(models.Model):
         # Group posts by year
         default_dict = defaultdict(list)
         for post in posts:
-            key = post.release_date.year if post.release_date.year else 0
+            key = post.release_date.year if post.release_date else None
             default_dict[key].append(post)
 
         return dict(default_dict)

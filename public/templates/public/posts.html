@@ -14,7 +14,11 @@
             </header>
             <div class="section-content">
                 {% for year, posts in posts_dict.items %}
+                {% if year %}
                 <h2>{{ year }}</h2>
+                {% else %}
+                <hr/>
+                {% endif %}
                 <ul id="list_posts" class="blocks">
                     {% for post in posts %}
                     <li>
