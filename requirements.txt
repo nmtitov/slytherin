@@ -25,7 +25,7 @@ invoke==1.2.0
 olefile==0.46
 packaging==19.0
 paramiko==2.6.0
-Pillow==6.1.0
+Pillow==6.2.0
 pip-autoremove==0.9.1
 pip-upgrade==0.0.6
 pip-upgrader==1.4.15
