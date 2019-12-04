@@ -10,7 +10,7 @@ Click==7.0
 colorclass==2.2.0
 cryptography==2.7
 curtsies==0.3.0
-Django==2.2.3
+Django==2.2.8
 django-appconf==1.0.3
 django-axes==5.0.7
 django-extensions==2.1.9
