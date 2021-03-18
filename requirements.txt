@@ -32,7 +32,7 @@ mypy-extensions==0.4.1
 olefile==0.46
 packaging==20.3
 paramiko==2.7.1
-Pillow==7.1.2
+Pillow==8.1.1
 pip-autoremove==0.9.1
 pip-upgrade==0.0.6
 pip-upgrader==1.4.15
